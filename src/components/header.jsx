@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "./ui/button";
-
+import MetaMaskLogin from "./MetaMaskLogin";
 const Header = () => {
   return (
     <div>
@@ -24,6 +24,7 @@ const Header = () => {
             </div>
           </div>
           <div className="flex items-center space-x-4">
+            <MetaMaskLogin/>
             <Button variant="ghost">Sign In</Button>
             <Button>Get Started</Button>
           </div>

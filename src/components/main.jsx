@@ -9,19 +9,17 @@ const main = () => {
   return (
     <div>
       <main className="flex-1">
-        {/* Hero Section */}
         <section className="container px-4 py-20 mx-auto text-center">
           <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
-            Learn, buy & sell
+          Empowering Ideas, 
             <br />
-            crypto easily
+            Accelerating Investments
           </h1>
           <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
-            Built for the next generation of investors. Trade cryptocurrencies
-            with confidence.
+          Utilize AI insights, blockchain security, and real-time pitches to build your portfolio.
           </p>
           <Button className="mt-8" size="lg">
-            Get Started
+          Begin Your Journey
           </Button>
           <div className="-mt-40 flex justify-center items-center">
             <Lottie
@@ -32,7 +30,6 @@ const main = () => {
           </div>
         </section>
 
-        {/* Why Choose Section */}
         <section className="container px-4 -mt-10 mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">
             Why Choose BlockPitch
