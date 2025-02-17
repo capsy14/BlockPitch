@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link"
 import { Button } from "./ui/button";
 import MetaMaskLogin from "./MetaMaskLogin";
 const Header = () => {
@@ -25,8 +26,11 @@ const Header = () => {
           </div>
           <div className="flex items-center space-x-4">
             <MetaMaskLogin/>
+            <Link href="/user-select">
             <Button variant="ghost">Sign In</Button>
+            </Link>
             <Button>Get Started</Button>
+          
           </div>
         </nav>
       </header>
