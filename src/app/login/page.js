@@ -1,10 +1,32 @@
 "use client"
 
+import { useState } from "react"
 import Link from "next/link"
-import { QrCode, ArrowRight, Bitcoin, EclipseIcon as Ethereum, WavesIcon as Ripple } from "lucide-react"
+import { QrCode, ArrowRight } from "lucide-react"
 import { motion } from "framer-motion"
+import { useAuth } from "@/context/AuthContext"
 
 export default function LoginPage() {
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [error, setError] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
+  const { login } = useAuth()
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setError("")
+    setIsLoading(true)
+
+    try {
+      await login(email, password)
+    } catch (err) {
+      setError(err.message || "Failed to login. Please check your credentials.")
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <motion.div
@@ -24,7 +46,9 @@ export default function LoginPage() {
         className="mt-8 sm:mx-auto sm:w-full sm:max-w-md"
       >
         <div className="bg-white py-8 px-4 shadow-lg sm:rounded-lg sm:px-10 border border-gray-200">
-          <form className="space-y-6" action="#" method="POST">
+          {error && <div className="mb-4 p-2 bg-red-100 border border-red-400 text-red-700 rounded">{error}</div>}
+
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                 Email/ID
@@ -36,6 +60,8 @@ export default function LoginPage() {
                   type="email"
                   autoComplete="email"
                   required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   placeholder="Please fill in the email form."
                 />
@@ -53,6 +79,8 @@ export default function LoginPage() {
                   type="password"
                   autoComplete="current-password"
                   required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   placeholder="Please enter a password."
                 />
@@ -85,9 +113,10 @@ export default function LoginPage() {
             <div>
               <button
                 type="submit"
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200"
+                disabled={isLoading}
+                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Login
+                {isLoading ? "Logging in..." : "Login"}
               </button>
             </div>
           </form>
@@ -105,7 +134,9 @@ export default function LoginPage() {
             <div className="mt-6 grid grid-cols-1 gap-3">
               <div className="text-center">
                 <p className="text-sm font-medium text-gray-700">Login With QR Code</p>
-                <p className="text-xs text-gray-500">Scan this code with the BlockPitch mobile app to log in instantly.</p>
+                <p className="text-xs text-gray-500">
+                  Scan this code with the BlockPitch mobile app to log in instantly.
+                </p>
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="mt-2 inline-block">
                   <QrCode size={100} className="text-indigo-600" />
                 </motion.div>
@@ -137,27 +168,7 @@ export default function LoginPage() {
           </div>
         </div>
       </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.6 }}
-        className="fixed bottom-0 left-0 w-full flex justify-center space-x-4 p-4 bg-white bg-opacity-80 backdrop-blur-sm"
-      >
-      </motion.div>
     </div>
   )
 }
-
-
-
-
-
-
-
-
-
-
-
-
 

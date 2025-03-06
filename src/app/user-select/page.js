@@ -13,7 +13,7 @@ export default function UserTypePage() {
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <div className="space-y-6">
             <Link
-              href="/login?type=investor"
+              href="/register?type=investor"
               className="w-full flex items-center justify-between px-4 py-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200 ease-in-out transform hover:scale-105"
             >
               <div className="flex items-center">
@@ -24,7 +24,7 @@ export default function UserTypePage() {
             </Link>
 
             <Link
-              href="/login?type=startup"
+              href="/register?type=startup"
               className="w-full flex items-center justify-between px-4 py-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200 ease-in-out transform hover:scale-105"
             >
               <div className="flex items-center">
