@@ -18,6 +18,8 @@
     "jsonwebtoken": "^9.0.2",
     "lottie-react": "^2.4.1",
     "lucide-react": "^0.475.0",
+    "mongodb": "^6.15.0",
+    "mongoose": "^8.13.2",
     "motion": "^12.4.2",
     "next": "15.1.6",
     "nextjs": "^0.0.3",

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
-import { db } from "@/lib/db"
+import { connectToDatabase } from "@/lib/db"
+import User from "@/models/User"
 import { verifyPassword, createToken, createAuthCookie } from "@/lib/auth"
 
 export async function POST(request) {
@@ -10,35 +11,30 @@ export async function POST(request) {
       return NextResponse.json({ error: "Email and password are required" }, { status: 400 })
     }
 
-    const user = await db.users.findUnique({
-      where: { email },
-    })
+    await connectToDatabase()
 
+    const user = await User.findOne({ email })
     if (!user) {
       return NextResponse.json({ error: "Invalid email or password" }, { status: 401 })
     }
 
-
     const isPasswordValid = await verifyPassword(password, user.password)
-
     if (!isPasswordValid) {
       return NextResponse.json({ error: "Invalid email or password" }, { status: 401 })
     }
 
-
     const token = createToken({
-      id: user.id,
+      id: user._id,
       email: user.email,
       role: user.role,
     })
 
-
     const response = NextResponse.json({
       user: {
-        id: user.id,
+        id: user._id,
+        name: user.name,
         email: user.email,
         role: user.role,
-        name: user.name,
       },
       message: "Login successful",
     })
@@ -51,4 +47,3 @@ export async function POST(request) {
     return NextResponse.json({ error: "Something went wrong" }, { status: 500 })
   }
 }
-

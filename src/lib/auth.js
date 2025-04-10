@@ -1,6 +1,7 @@
 import { hash, compare } from "bcryptjs"
 import { sign, verify } from "jsonwebtoken"
-import { db } from "./db"
+import { connectToDatabase } from "./db"
+import User from "@/models/User"
 
 const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key-change-in-production"
 
@@ -28,7 +29,8 @@ export async function getUserFromToken(token) {
   const payload = verifyToken(token)
   if (!payload || !payload.id) return null
 
-  const user = await db.users.findUnique({ where: { id: payload.id } })
+  await connectToDatabase()
+  const user = await User.findById(payload.id).select("name email role")
   return user
 }
 
@@ -40,6 +42,6 @@ export function createAuthCookie(token) {
     secure: process.env.NODE_ENV === "production",
     path: "/",
     maxAge: 60 * 60 * 24 * 7, // 1 week
+    sameSite: "lax", // optional, but helps with CSRF protection
   }
 }
-

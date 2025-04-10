@@ -1,33 +1,31 @@
-// Simple in-memory database for demonstration
-// In a production app, you would use a real database like MongoDB, PostgreSQL, etc.
+// src/lib/db.js
+import mongoose from 'mongoose'
 
-const users = []
+const MONGODB_URI = process.env.MONGODB_URI
 
-export const db = {
-  users: {
-    create: (userData) => {
-      const newUser = { id: Date.now().toString(), ...userData }
-      users.push(newUser)
-      return newUser
-    },
-    findUnique: ({ where }) => {
-      if (where.email) {
-        return users.find((user) => user.email === where.email) || null
-      }
-      if (where.id) {
-        return users.find((user) => user.id === where.id) || null
-      }
-      return null
-    },
-    findMany: (query = {}) => {
-      let result = [...users]
-
-      if (query.where?.role) {
-        result = result.filter((user) => user.role === query.where.role)
-      }
-
-      return result
-    },
-  },
+if (!MONGODB_URI) {
+  throw new Error('Please define the MONGODB_URI environment variable in .env.local')
 }
 
+// Global is used here to maintain a cached connection across hot reloads in dev
+let cached = global.mongoose
+
+if (!cached) {
+  cached = global.mongoose = { conn: null, promise: null }
+}
+
+export async function connectToDatabase() {
+  if (cached.conn) {
+    return cached.conn
+  }
+
+  if (!cached.promise) {
+    cached.promise = mongoose.connect(MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }).then((mongoose) => mongoose)
+  }
+
+  cached.conn = await cached.promise
+  return cached.conn
+}
