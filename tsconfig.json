@@ -32,7 +32,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "src/components/header.jsx", "src/components/footer.jsx", "src/components/main.jsx"  ],
+, "src/components/header.jsx", "src/components/footer.jsx", "src/components/main.jsx", "src/components/uploadModal.jsx", "src/components/startupDashboard.jsx", "src/components/ui/button.jsx"  ],
   "exclude": [
     "node_modules"
   ]

@@ -39,7 +39,10 @@ export async function POST(request) {
       message: "Login successful",
     })
 
-    response.cookies.set(createAuthCookie(token))
+    // response.cookies.set(createAuthCookie(token))
+    const { name, value, options } = createAuthCookie(token)
+    response.cookies.set(name, value, options)
+
 
     return response
   } catch (error) {
@@ -47,3 +50,4 @@ export async function POST(request) {
     return NextResponse.json({ error: "Something went wrong" }, { status: 500 })
   }
 }
+
