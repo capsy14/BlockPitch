@@ -98,7 +98,7 @@ export default function StartupDashboard() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {startupData.pitchMaterials.length === 0 ? (
+          {startupData.pitchMaterials?.length === 0 ? (
             <p className="text-sm text-muted-foreground">No pitch materials uploaded yet.</p>
           ) : (
             startupData.pitchMaterials.map((item, i) => (
@@ -134,14 +134,14 @@ export default function StartupDashboard() {
               </tr>
             </thead>
             <tbody>
-              {startupData.currentInvestors.length === 0 ? (
+              {startupData.currentInvestors?.length === 0 ? (
                 <tr>
                   <td colSpan={4} className="text-center py-4 text-muted-foreground">
                     No investors yet.
                   </td>
                 </tr>
               ) : (
-                startupData.currentInvestors.map((investor, i) => (
+                startupData.currentInvestors?.map((investor, i) => (
                   <tr key={i} className="border-b">
                     <td className="py-3 px-2">{investor.name}</td>
                     <td className="py-3 px-2">

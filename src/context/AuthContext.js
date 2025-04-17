@@ -80,7 +80,7 @@ export function AuthProvider({ children }) {
       if (data.user.role === "investor") {
         router.push("/investor/dashboard")
       } else if (data.user.role === "startup") {
-        router.push("/startup/dashboard")
+        router.push("/startup-details")
       } else {
         router.push("/dashboard")
       }
