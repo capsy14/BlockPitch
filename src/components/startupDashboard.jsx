@@ -20,7 +20,7 @@ export default function StartupDashboard() {
   }, [user, loading, router])
 
   useEffect(() => {
-    axios.get("http://localhost:3000/api/startupdata")
+    axios.get("/api/startupdata")
       .then(res => {
         setStartupData(res.data.startup)
       })
@@ -37,54 +37,17 @@ export default function StartupDashboard() {
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-6">{startupData.name}</h1>
 
+      {/* Top Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <Card className="p-6">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-medium">Funds Raised</h3>
-            <DollarSign className="text-indigo-600" />
-          </div>
-          <p className="text-3xl font-bold">${startupData.fundsRaised}</p>
-          <p className="text-sm text-muted-foreground mt-2">Target: ${startupData.targetFund}</p>
-        </Card>
-
-        <Card className="p-6">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-medium">Investors</h3>
-            <Users className="text-indigo-600" />
-          </div>
-          <p className="text-3xl font-bold">{startupData.totalInvestors}</p>
-          <p className="text-sm text-green-600 mt-2">
-            +{startupData.investorGrowthThisMonth} this month
-          </p>
-        </Card>
-
-        <Card className="p-6">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-medium">Pitch Deck Views</h3>
-            <Briefcase className="text-indigo-600" />
-          </div>
-          <p className="text-3xl font-bold">{startupData.pitchViews}</p>
-          <p className="text-sm text-muted-foreground mt-2">Last 30 days</p>
-        </Card>
+        <StatCard title="Funds Raised" value={`$${startupData.fundsRaised}`} icon={<DollarSign />} subtitle={`Target: $${startupData.targetFund}`} />
+        <StatCard title="Investors" value={startupData.totalInvestors} icon={<Users />} subtitle={`+${startupData.investorGrowthThisMonth} this month`} />
+        <StatCard title="Pitch Views" value={startupData.pitchViews} icon={<Briefcase />} subtitle="Last 30 days" />
       </div>
 
-      {/* Fundraising and Investor Demographics */}
+      {/* Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-        <Card className="p-6">
-          <h3 className="text-lg font-medium mb-4">Fundraising Progress</h3>
-          <div className="h-64 flex items-center justify-center bg-gray-100 rounded">
-            <LineChart className="h-12 w-12 text-gray-400" />
-            <span className="ml-2 text-gray-500">Progress Chart</span>
-          </div>
-        </Card>
-
-        <Card className="p-6">
-          <h3 className="text-lg font-medium mb-4">Investor Demographics</h3>
-          <div className="h-64 flex items-center justify-center bg-gray-100 rounded">
-            <BarChart className="h-12 w-12 text-gray-400" />
-            <span className="ml-2 text-gray-500">Demographics Chart</span>
-          </div>
-        </Card>
+        <ChartCard title="Fundraising Progress" icon={<LineChart />} />
+        <ChartCard title="Investor Demographics" icon={<BarChart />} />
       </div>
 
       {/* Pitch Materials */}
@@ -104,10 +67,12 @@ export default function StartupDashboard() {
             startupData.pitchMaterials.map((item, i) => (
               <Card key={i} className="p-4">
                 <div className="w-full h-32 bg-gray-200 rounded mb-3"></div>
-                <h4 className="font-medium">{item.name}</h4>
+                <h4 className="font-medium">{item.title}</h4>
                 <p className="text-sm text-muted-foreground mb-2">{item.type}</p>
                 <div className="flex justify-between items-center">
-                  <span className="text-xs text-muted-foreground">{item.date}</span>
+                  <span className="text-xs text-muted-foreground">
+                    {new Date(item.lastUpdated).toLocaleDateString()}
+                  </span>
                   <Button size="sm" variant="outline">Edit</Button>
                 </div>
               </Card>
@@ -116,7 +81,7 @@ export default function StartupDashboard() {
         </div>
       </Card>
 
-      {/* Current Investors */}
+      {/* Investors Table */}
       <Card className="p-6">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-medium">Current Investors</h3>
@@ -128,34 +93,24 @@ export default function StartupDashboard() {
             <thead>
               <tr className="border-b">
                 <th className="text-left py-3 px-2">Investor</th>
-                <th className="text-left py-3 px-2">Interest Level</th>
-                <th className="text-left py-3 px-2">Last Contact</th>
+                <th className="text-left py-3 px-2">Amount Invested</th>
+                <th className="text-left py-3 px-2">Contact</th>
                 <th className="text-left py-3 px-2">Action</th>
               </tr>
             </thead>
             <tbody>
-              {startupData.currentInvestors.length === 0 ? (
+              {!startupData.investors || startupData.investors.length === 0 ? (
                 <tr>
                   <td colSpan={4} className="text-center py-4 text-muted-foreground">
                     No investors yet.
                   </td>
                 </tr>
               ) : (
-                startupData.currentInvestors.map((investor, i) => (
+                startupData.investors.map((investor, i) => (
                   <tr key={i} className="border-b">
-                    <td className="py-3 px-2">{investor.name}</td>
-                    <td className="py-3 px-2">
-                      <span className={`px-2 py-1 rounded text-xs ${
-                        investor.level === "High"
-                          ? "bg-green-100 text-green-800"
-                          : investor.level === "Medium"
-                            ? "bg-yellow-100 text-yellow-800"
-                            : "bg-gray-100 text-gray-800"
-                      }`}>
-                        {investor.level}
-                      </span>
-                    </td>
-                    <td className="py-3 px-2">{investor.contact}</td>
+                    <td className="py-3 px-2">{investor.investorEmail}</td>
+                    <td className="py-3 px-2">${investor.investedAmount}</td>
+                    <td className="py-3 px-2">N/A</td>
                     <td className="py-3 px-2">
                       <Button size="sm">Contact</Button>
                     </td>
@@ -167,5 +122,30 @@ export default function StartupDashboard() {
         </div>
       </Card>
     </div>
+  )
+}
+
+function StatCard({ title, value, icon, subtitle }) {
+  return (
+    <Card className="p-6">
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="text-lg font-medium">{title}</h3>
+        <div className="text-indigo-600">{icon}</div>
+      </div>
+      <p className="text-3xl font-bold">{value}</p>
+      <p className="text-sm text-muted-foreground mt-2">{subtitle}</p>
+    </Card>
+  )
+}
+
+function ChartCard({ title, icon }) {
+  return (
+    <Card className="p-6">
+      <h3 className="text-lg font-medium mb-4">{title}</h3>
+      <div className="h-64 flex items-center justify-center bg-gray-100 rounded">
+        {icon}
+        <span className="ml-2 text-gray-500">Coming Soon</span>
+      </div>
+    </Card>
   )
 }

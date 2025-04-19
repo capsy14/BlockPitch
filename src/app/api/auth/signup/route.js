@@ -8,7 +8,22 @@ import { v4 as uuidv4 } from "uuid"  // Import uuid to generate unique IDs
 export async function POST(request) {
   try {
     const body = await request.json()
-    const { email, password, role, name, ...rest } = body
+    // const { email, password, role, name, ...rest } = body
+    let {
+      email,
+      password,
+      role,
+      name,
+      profileImage,
+      walletAddress,
+      bio,
+      foundersName,
+      description,
+      location,
+      category,
+      websiteLink,
+    } = body
+    
 
     console.log("Signup received:", body) // ✅ Debugging log
 
@@ -36,30 +51,60 @@ export async function POST(request) {
     const hashedPassword = await hashPassword(password)
 
     // Create User
+    // const user = await User.create({
+    //   name,
+    //   email,
+    //   password: hashedPassword,
+    //   role,
+    // })
+
     const user = await User.create({
       name,
       email,
       password: hashedPassword,
       role,
+      profileImage: profileImage || null,
+      walletAddress: walletAddress || null,
+      bio: bio || null,
     })
+    
 
     console.log("✅ User saved:", user)
 
     // If the role is "startup", create a corresponding Startup entry
     if (role === "startup") {
+      // const startup = new Startup({
+      //   _id: uuidv4(),
+      //   name,
+      //   email,
+      //   password: hashedPassword,
+      //   founders: [],  // Customize founders as needed
+      //   currentInvestors: [],
+      //   totalInvestors: 0,
+      //   fundsRaised: 0,
+      //   pitchViews: 0,
+      //   pitchMaterials: [],
+      //   ...rest,  // Additional fields (if any) for the startup
+      // })
+
       const startup = new Startup({
         _id: uuidv4(),
-        name,
+        name, // Startup Name
+        foundersName,
         email,
         password: hashedPassword,
-        founders: [],  // Customize founders as needed
+        walletAddress,
+        description,
+        location,
+        category,
+        websiteLink,
         currentInvestors: [],
         totalInvestors: 0,
         fundsRaised: 0,
         pitchViews: 0,
         pitchMaterials: [],
-        ...rest,  // Additional fields (if any) for the startup
       })
+      
 
       await startup.save()
       console.log("✅ Startup created:", startup)

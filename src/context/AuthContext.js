@@ -60,6 +60,38 @@ export function AuthProvider({ children }) {
     }
   }
 
+  // const signup = async (userData) => {
+  //   try {
+  //     const response = await fetch("/api/auth/signup", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify(userData),
+  //     })
+
+  //     if (!response.ok) {
+  //       const error = await response.json()
+  //       throw new Error(error.error || "Signup failed")
+  //     }
+
+  //     const data = await response.json()
+  //     setUser(data.user)
+
+  //     // Redirect based on role
+  //     if (data.user.role === "investor") {
+  //       router.push("/investor/dashboard")
+  //     } else if (data.user.role === "startup") {
+  //       router.push("/startup/dashboard")
+  //     } else {
+  //       router.push("/dashboard")
+  //     }
+
+  //     return data
+  //   } catch (error) {
+  //     console.error("Signup error:", error)
+  //     throw error
+  //   }
+  // }
+
   const signup = async (userData) => {
     try {
       const response = await fetch("/api/auth/signup", {
@@ -67,24 +99,22 @@ export function AuthProvider({ children }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(userData),
       })
-
+  
       if (!response.ok) {
         const error = await response.json()
         throw new Error(error.error || "Signup failed")
       }
-
+  
       const data = await response.json()
       setUser(data.user)
-
-      // Redirect based on role
+  
+      // Redirect to next step (profile completion)
       if (data.user.role === "investor") {
-        router.push("/investor/dashboard")
+        router.push("/investordata")
       } else if (data.user.role === "startup") {
-        router.push("/startup/dashboard")
-      } else {
-        router.push("/dashboard")
+        router.push("/startupdata")
       }
-
+  
       return data
     } catch (error) {
       console.error("Signup error:", error)
@@ -92,6 +122,8 @@ export function AuthProvider({ children }) {
     }
   }
 
+  
+  
   const logout = async () => {
     try {
       await fetch("/api/auth/logout", { method: "POST" })
