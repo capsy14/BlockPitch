@@ -34,9 +34,15 @@ export function DashboardSidebar() {
       active: pathname === `${basePath}/messages` || pathname.startsWith(`${basePath}/startups/`),
     },
     {
-      title: "Investments",
+      title: "My Startups",
       icon: CreditCard,
-      href: `${basePath}/investments`,
+      href: `${basePath}/mystartups`,
+      active: pathname === `${basePath}/mystartups`,
+    },
+    {
+      title: "Add Startup",
+      icon: CreditCard,
+      href: `${basePath}/startup-details`,
       active: pathname === `${basePath}/investments`,
     },
     {

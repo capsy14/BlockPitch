@@ -7,7 +7,8 @@ import {
   CreditCard,
   LayoutDashboard,
   LineChart,
-  LogOut
+  LogOut,
+  GalleryVerticalEnd 
 } from "lucide-react";
 import {
   Sidebar,
@@ -32,6 +33,12 @@ export function DashboardSidebar() {
       title: "Dashboard",
       icon: LayoutDashboard,
       href: `${basePath}/`,
+      active: pathname === basePath
+    },
+    {
+      title: "All Startups",
+      icon: GalleryVerticalEnd ,
+      href: `${basePath}/startups`,
       active: pathname === basePath
     },
     {

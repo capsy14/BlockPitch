@@ -38,7 +38,7 @@ export default function Home() {
             <Card key={startup._id} className="overflow-hidden">
               <CardHeader className="p-0">
                 <Image
-                  src={startup.image || "/placeholder?.svg"}
+                  src={startup.image || "/image.png"}
                   alt="image"
                   width={400}
                   height={200}
@@ -58,7 +58,7 @@ export default function Home() {
                 </div>
               </CardContent>
               <CardFooter className="p-6 pt-0">
-                <Link href={`startup-list/startup/${startup._id}`} className="w-full">
+                <Link href={`./startups/${startup._id}`} className="w-full">
                   <Button className="w-full" size="lg">
                     Invest Now
                   </Button>

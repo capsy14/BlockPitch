@@ -29,7 +29,7 @@ export default async function StartupDetail({
         <div className="grid gap-12 lg:grid-cols-[2fr,1fr]">
           <div>
             <Image
-              src={startup?.image || "/placeholder?.svg"}
+              src={startup?.image || "/image.png"}
               alt="image"
               width={800}
               height={400}

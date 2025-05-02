@@ -5,11 +5,7 @@
       "@/*": ["src/*"]
     },
     "target": "ES2017",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -31,9 +27,14 @@
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "src/components/header.jsx", "src/components/footer.jsx", "src/components/main.jsx", "src/components/uploadModal.jsx", "src/components/startupDashboard.jsx", "src/components/ui/button.jsx"  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "**/*.tsx",
+    "src/components/header.jsx",
+    "src/components/footer.jsx",
+    "src/components/main.jsx",
+    "src/components/uploadModal.jsx",
+    "src/components/startupDashboard.jsx",
+    "src/components/ui/button.jsx",
+    "src/lib/socket.js"
+  ],
+  "exclude": ["node_modules"]
 }
