@@ -1,10 +1,13 @@
 import React from 'react'
 import StartupForm from "@/components/startupDetailFill";
+import Layout from "@/components/Layout";
 const StartupDetails = () => {
   return (
+    <Layout>
     <div>
       <StartupForm/>
     </div>
+    </Layout>
   )
 }
 

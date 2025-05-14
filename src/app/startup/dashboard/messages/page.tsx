@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { io } from "socket.io-client";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-
+import Layout from "@/components/Layout";
 const socket = io("http://localhost:3000"); // Replace with your server URL
 
 export default function StartupMessagesPage() {
@@ -49,6 +49,7 @@ export default function StartupMessagesPage() {
   };
 
   return (
+    <Layout>
     <div className="p-6">
       <h1 className="text-2xl font-bold">Messages</h1>
       <div className="mt-4 space-y-4">
@@ -73,5 +74,6 @@ export default function StartupMessagesPage() {
         <Button onClick={handleSendMessage}>Send</Button>
       </div>
     </div>
+    </Layout>
   );
 }
