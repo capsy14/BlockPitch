@@ -52,7 +52,7 @@ const Header = () => {
               </div>
             ) : (
               <>
-                <Link href="/user-select">
+                <Link href="/login">
                   <Button variant="ghost">Sign In</Button>
                 </Link>
                 <Link href="/register">

@@ -8,6 +8,9 @@ export default {
   ],
   theme: {
   	extend: {
+	 fontFamily: {
+        sans: ['Lato', 'ui-sans-serif', 'system-ui'],
+      },
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
