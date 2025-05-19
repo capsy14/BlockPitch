@@ -33,33 +33,36 @@ const Header = () => {
             </div>
           </div>
           <div className="flex items-center space-x-4">
-            <MetaMaskLogin />
+          
 
             {user ? (
               <div className="flex items-center space-x-4">
                 <span className="text-sm font-medium">Welcome, {user.name || user.email}</span>
+                  <MetaMaskLogin />
                 {user.role === "investor" && (
                   <Link href="/investor/dashboard">
                     <Button variant="outline">Dashboard</Button>
                   </Link>
                 )}
+                
                 {user.role === "startup" && (
                   <Link href="/startup/dashboard">
                     <Button variant="outline">Dashboard</Button>
                   </Link>
                 )}
-                <Button variant="ghost" onClick={logout}>
+                <Button className="text-white
+                 bg-black" variant="ghost" onClick={logout}>
                   Sign Out
                 </Button>
               </div>
             ) : (
               <>
                 <Link href="/login">
-                  <Button variant="ghost">Sign In</Button>
+                  <Button className="border-gray-300 border-dotted border-r-4 border-[2px]" variant="ghost">Sign In</Button>
                 </Link>
                 <Link href="/register">
                   {/* <Button>Get Started</Button> */}
-                      <RainbowButton className="rounded-xl"
+                      <RainbowButton className=""
 >
   Get Started
 </RainbowButton>

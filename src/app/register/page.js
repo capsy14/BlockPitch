@@ -135,7 +135,7 @@ export default function RegisterPage() {
               />
             </div>
 
-            <div className="flex items-center justify-center gap-2">
+            <div className="flex items-center justify-center gap-3 ">
               <div>
                 <label
                   htmlFor="password"

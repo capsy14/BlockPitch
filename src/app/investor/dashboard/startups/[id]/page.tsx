@@ -23,6 +23,7 @@ export default async function StartupDetail({
 
   return (
     <Layout>
+     
     <div className="container mx-auto py-8 px-4 max-w-5xl">
       <Link
           href="/investor/dashboard/startups"
@@ -51,9 +52,15 @@ export default async function StartupDetail({
                   <span>Link Message</span>
                 </Button>
                 <Link href="/sendEth" className="w-full">
-                <Button className="w-full flex items-center justify-center gap-2" variant="default">
+                <Button className="w-full mt-2 flex items-center justify-center gap-2" variant="default">
                   <DollarSign className="h-4 w-4" />
                   <span>Invest Now</span>
+                </Button>
+                </Link>
+            <Link href = {startup.pitchDeck} target="_blank">
+                <Button className="w-full mt-2 flex items-center justify-center gap-2" variant="secondary">
+                  <Video className="h-4 w-4" />
+                  <span>View Pitch Desk</span>
                 </Button>
             </Link>
                 <Button className="w-full flex items-center justify-center gap-2" variant="secondary">
@@ -82,6 +89,7 @@ export default async function StartupDetail({
                 <div className="whitespace-pre-line text-muted-foreground">{startup.description}</div>
               </div>
 
+
               <Separator />
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -96,6 +104,7 @@ export default async function StartupDetail({
                 </div>
               </div>
 
+              <Separator />
               <Separator />
 
               <div>
@@ -151,6 +160,7 @@ export default async function StartupDetail({
                               className="text-primary hover:underline"
                             >
                               {startup.cofounderLinkedin}
+                              
                             </Link>
                           </p>
                         )}

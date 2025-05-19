@@ -45,29 +45,24 @@ export default function StartupForm() {
     solution: "",
     founderName: "",
     founderEmail: "",
-    // founderLinkedIn: "",
     startupName: "",
-    // description: "",
-    // industry: "",
-    // location: "",
-    // problem: "",
-    // solution: "",
-    // founderName: "",
-    // founderEmail: "",
     founderLinkedIn: "",
     cofounderName: "",
     cofounderEmail: "",
     cofounderLinkedin: "",
-    pitchDeck: null
+   pitchDeck: ""
   });
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // Handle file upload logic here
-    const file = e.target.files?.[0];
-    if (file) {
-      setForm({ ...form, pitchDeck: file });
-      console.log("File selected:", file.name);
-    }
+//  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+//   const file = e.target.files?.[0];
+//   if (file) {
+//     setForm({ ...form, pitchDeck: file });
+//     console.log("File selected:", file.name);
+//   }
+// };
+
+  const handleLinkChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm({ ...form, pitchDeck: e.target.value });
   };
 
   const nextStep = () => {
@@ -102,6 +97,7 @@ export default function StartupForm() {
       cofounderName: form.cofounderName,
       cofounderEmail: form.cofounderEmail,
       cofounderLinkedin: form.cofounderLinkedin,
+      pitchDeck: form.pitchDeck
     };
 
     try {
@@ -351,35 +347,19 @@ export default function StartupForm() {
 
             {/* Step 4: Pitch Deck Upload */}
             {step === 4 && (
-              <div className="space-y-4">
-                <div className="space-y-2">
-                  <div className="flex items-center space-x-2">
-                    <FileText className="w-5 h-5 text-muted-foreground" />
-                    <Label htmlFor="pitch-deck">Upload Pitch Deck</Label>
-                  </div>
-                  <div className="flex flex-col items-center justify-center border-2 border-dashed rounded-lg p-6 bg-muted/50">
-                    <Input
-                      id="pitch-deck"
-                      type="file"
-                      className="hidden"
-                      accept=".pdf,.ppt,.pptx"
-                      onChange={handleFileChange}
-                    />
-                    <Label
-                      htmlFor="pitch-deck"
-                      className="flex flex-col items-center cursor-pointer space-y-2"
-                    >
-                      <FileText className="w-8 h-8 text-muted-foreground" />
-                      <span className="text-sm font-medium">
-                        Drop your pitch deck here or click to browse
-                      </span>
-                      <span className="text-xs text-muted-foreground">
-                        Supported formats: PDF, PPT, PPTX (Max 10MB)
-                      </span>
-                    </Label>
-                  </div>
-                </div>
-              </div>
+             <div className="space-y-2">
+  <Label htmlFor="pitch-link">Pitch Deck Link</Label>
+  <Input
+    id="pitch-link"
+    type="url"
+    placeholder="https://drive.google.com/..."
+    onChange={handleLinkChange}
+  />
+  <p className="text-xs text-muted-foreground">
+    Paste a shareable link to your pitch deck (Google Drive, Dropbox, etc.)
+  </p>
+</div>
+
             )}
 
             {/* Navigation Buttons */}

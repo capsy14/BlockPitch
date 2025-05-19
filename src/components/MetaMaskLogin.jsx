@@ -114,7 +114,7 @@ const MetaMaskLogin = () => {
       {!walletAddress ? (
         <button
           onClick={connectWallet}
-          className="px-4 py-2 text-white bg-blue-600 rounded"
+          className="px-4 py-2 border-gray-200 border-[1px] rounded"
         >
           Login with MetaMask
         </button>

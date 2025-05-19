@@ -69,7 +69,7 @@ export function DashboardSidebar() {
         <div className="flex items-center gap-2">
           <BarChart3 className="h-6 w-6" />
           
-          <Link href="/startup-list">
+          <Link href="/">
   <span className="font-semibold text-lg">BlockPitch</span>
 </Link>
         </div>

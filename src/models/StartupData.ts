@@ -21,6 +21,7 @@ export interface IStartup extends Document {
   cofounderName?: string;
   cofounderEmail?: string;
   cofounderLinkedin?: string;
+  pitchDeck?: string;
   messages: IMessage[];
 }
 const MessageSchema = new Schema<IMessage>({
@@ -43,6 +44,7 @@ const StartupSchema = new Schema<IStartup>({
   cofounderName: String,
   cofounderEmail: String,
   cofounderLinkedin: String,
+  pitchDeck: {type: String, required: true},
   messages: [MessageSchema],
 });
 

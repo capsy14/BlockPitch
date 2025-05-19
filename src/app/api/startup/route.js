@@ -19,7 +19,8 @@ export async function POST(request) {
       founderLinkedIn,
       cofounderName,
       cofounderEmail,
-      cofounderLinkedin
+      cofounderLinkedin,
+       pitchDeck
     } = body;
 
     // Validate required fields
@@ -47,7 +48,8 @@ export async function POST(request) {
       founderLinkedIn,
       cofounderName,
       cofounderEmail,
-      cofounderLinkedin
+      cofounderLinkedin,
+      pitchDeck
     });
 
     await newStartup.save();

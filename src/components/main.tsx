@@ -1,7 +1,4 @@
-// "use client";
-// import React from "react";
-// import { Card } from "./ui/card";
-// import { Button } from "./ui/button";
+
 import Lottie from "lottie-react";
 import image1 from "@/../public/image1.json";
 import InvestorSignupForm from "@/components/investor-signup-form"
@@ -10,226 +7,6 @@ import MetricsCard from "@/components/metrics-card"
 import Testimonial from "@/components/testimonial"
 import FAQAccordion from "@/components/faq-accordion"
 import MarketChart from "@/components/market-chart"
-
-// import bitcoinAnimation from "@/../public/bitcoin.json";
-
-// const main = () => {
-//   return (
-//     <div>
-//       <main className="flex-1">
-//         <section className="container px-4 py-20 mx-auto text-center">
-//           <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
-//           Empowering Ideas, 
-//             <br />
-//             Accelerating Investments
-//           </h1>
-//           <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
-//           Utilize AI insights, blockchain security, and real-time pitches to build your portfolio.
-//           </p>
-//           <Button className="mt-8" size="lg">
-//           Begin Your Journey
-//           </Button>
-          // <div className="-mt-40 flex justify-center items-center">
-          //   <Lottie
-          //     animationData={image1}
-          //     loop={true}
-          //     style={{ width: 600, height: 500 }}
-          //   />
-//           </div>
-//         </section>
-
-//         <section className="container px-4 -mt-10 mx-auto">
-//           <h2 className="text-3xl font-bold text-center mb-12">
-//             Why Choose BlockPitch
-//           </h2>
-//           <div className="grid md:grid-cols-2 gap-12 items-center">
-//             <div className="space-y-8">
-//               <Card className="p-6">
-//                 <div className="flex items-start space-x-4">
-//                   <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-//                     <svg
-//                       className="w-6 h-6 text-primary"
-//                       fill="none"
-//                       viewBox="0 0 24 24"
-//                       stroke="currentColor"
-//                     >
-//                       <path
-//                         strokeLinecap="round"
-//                         strokeLinejoin="round"
-//                         strokeWidth={2}
-//                         d="M13 10V3L4 14h7v7l9-11h-7z"
-//                       />
-//                     </svg>
-//                   </div>
-//                   <div>
-//                     <h3 className="font-semibold mb-2">
-//                       Manage your portfolio
-//                     </h3>
-//                     <p className="text-muted-foreground">
-//                       Buy and sell popular digital currencies and keep track of
-//                       them in one place
-//                     </p>
-//                   </div>
-//                 </div>
-//               </Card>
-//               <Card className="p-6">
-//                 <div className="flex items-start space-x-4">
-//                   <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-//                     <svg
-//                       className="w-6 h-6 text-primary"
-//                       fill="none"
-//                       viewBox="0 0 24 24"
-//                       stroke="currentColor"
-//                     >
-//                       <path
-//                         strokeLinecap="round"
-//                         strokeLinejoin="round"
-//                         strokeWidth={2}
-//                         d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-//                       />
-//                     </svg>
-//                   </div>
-//                   <div>
-//                     <h3 className="font-semibold mb-2">Recurring buys</h3>
-//                     <p className="text-muted-foreground">
-//                       Invest in cryptocurrency slowly over time by scheduling
-//                       buys daily, weekly, or monthly
-//                     </p>
-//                   </div>
-//                 </div>
-//               </Card>
-//               <Card className="p-6">
-//                 <div className="flex items-start space-x-4">
-//                   <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-//                     <svg
-//                       className="w-6 h-6 text-primary"
-//                       fill="none"
-//                       viewBox="0 0 24 24"
-//                       stroke="currentColor"
-//                     >
-//                       <path
-//                         strokeLinecap="round"
-//                         strokeLinejoin="round"
-//                         strokeWidth={2}
-//                         d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
-//                       />
-//                     </svg>
-//                   </div>
-//                   <div>
-//                     <h3 className="font-semibold mb-2">Mobile apps</h3>
-//                     <p className="text-muted-foreground">
-//                       Stay on top of the markets with our mobile app. Never miss
-//                       an opportunity
-//                     </p>
-//                   </div>
-//                 </div>
-//               </Card>
-//             </div>
-//             <div className="relative">
-//               <Lottie animationData={bitcoinAnimation} className="h-[50vh]" />
-//             </div>
-//           </div>
-//         </section>
-
-//         {/* Steps Section */}
-//         <section className="container px-4 py-20 mx-auto">
-//           <h2 className="text-3xl font-bold text-center mb-12">
-//             3 Steps Easy Trading
-//           </h2>
-
-//           <div className="grid md:grid-cols-3 gap-8">
-//             {[
-//               {
-//                 title: "Download",
-//                 description:
-//                   "Download our mobile app or visit our website to get started"
-//               },
-//               {
-//                 title: "Connect Wallet",
-//                 description:
-//                   "Connect your crypto wallet to start trading instantly"
-//               },
-//               {
-//                 title: "Start Trading",
-//                 description: "Buy and sell crypto with just a few clicks"
-//               }
-//             ].map((step, i) => (
-//               <Card key={i} className="p-6">
-//                 <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-//                   <span className="text-xl font-bold text-primary">
-//                     {i + 1}
-//                   </span>
-//                 </div>
-//                 <h3 className="font-semibold mb-2">{step.title}</h3>
-//                 <p className="text-muted-foreground">{step.description}</p>
-//               </Card>
-//             ))}
-//           </div>
-//         </section>
-
-//         {/* Stats Section */}
-//         <section className="container px-4 py-20 mx-auto">
-//           <h2 className="text-3xl font-bold text-center mb-12">
-//             The Numbers Don't Lie
-//           </h2>
-//           <div className="grid grid-cols-3 gap-8">
-//             {[
-//               { number: "20m+", label: "Users worldwide" },
-//               { number: "100m+", label: "Monthly volume" },
-//               { number: "10m+", label: "Verified users" }
-//             ].map((stat, i) => (
-//               <div key={i} className="text-center">
-//                 <div className="text-4xl font-bold mb-2">{stat.number}</div>
-//                 <div className="text-muted-foreground">{stat.label}</div>
-//               </div>
-//             ))}
-//           </div>
-//         </section>
-
-//         <section className="container px-4 py-20 mx-auto">
-//           <div className="flex justify-center items-center">
-//             <div className="flex flex-col items-center justify-center text-center">
-//               <h2 className="text-3xl font-bold mb-6">
-//                 Join Our Trading Global Community
-//               </h2>
-//               <p className="text-muted-foreground mb-8">
-//                 Join millions of users worldwide in the fastest growing crypto
-//                 community
-//               </p>
-//               <Button size="lg">Join Now</Button>
-//             </div>
-//           </div>
-//         </section>
-
-//         {/* Learn and Earn Section */}
-//         <section className="container px-4 py-20 mx-auto">
-//           <h2 className="text-3xl font-bold text-center mb-12">
-//             Learn And Earn
-//           </h2>
-//           <div className="grid md:grid-cols-3 gap-8">
-//             {[1, 2, 3].map((card) => (
-//               <Card key={card} className="overflow-hidden">
-//                 <div className="aspect-video relative bg-primary/10"></div>
-//                 <div className="p-6">
-//                   <h3 className="font-semibold mb-2">
-//                     Learn about UBI coin and earn an All-Access Pass
-//                   </h3>
-//                   <p className="text-muted-foreground mb-4">
-//                     Learn and earn rewards by completing educational tasks
-//                   </p>
-//                   <Button variant="outline">Learn more</Button>
-//                 </div>
-//               </Card>
-//             ))}
-//           </div>
-//         </section>
-//       </main>
-//     </div>
-//   );
-// };
-
-// export default main;
-
 
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
@@ -240,13 +17,14 @@ import lottie, { AnimationItem } from 'lottie-web';
 import MyLottieComponent from "./MyLottieComponent";
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
-
+import { FlipWords } from "./ui/flip-word";
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
 
 import { cva, type VariantProps } from "class-variance-authority"
+import { RainbowButton } from "./magicui/rainbow-button";
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
@@ -299,8 +77,10 @@ Button.displayName = "Button"
 
 
 export default function main() {
+
+   const words = ["better", "cute", "beautiful", "modern"];
   return (
-    <div className="w-full px-[1.5rem] flex max-w-[100%] min-h-screen flex-col items-center justify-center bg-background text-foreground">
+    <div className="w-full px-[2rem] flex max-w-[100%] min-h-screen flex-col items-center justify-center bg-background text-foreground">
 
       <main className="flex-1">
         {/* Hero Section */}
@@ -312,15 +92,37 @@ export default function main() {
               <div className="inline-flex items-center rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-sm text-primary">
                 <span className="font-medium">Seed Round Now Open</span>
               </div>
-              <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
+             <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
+  <FlipWords
+    words={[
+      { text: "Revolutionizing" },
+      { text: "Modernizing" },
+      { text: "Disrupting" },
+      { text: "Transforming" },
+      { text: "FinTech" },
+      { text: "for" },
+      { text: "the" },
+      { text: "next" },
+      { text: "Generation" },
+    ]}
+  />{" "}
+  {/* <span className="text-primary ">FinTech</span> for the Next Generation */}
+</h1>
+{/* <p className="max-w-[600px] text-muted-foreground md:text-sm">
+  Join us in building the future of financial technology. Our AI-powered platform is disrupting a $500B
+  market with 215% YoY growth.
+</p> */}
+
+              {/* <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
                 Revolutionizing <span className="text-primary">FinTech</span> for the Next Generation
               </h1>
               <p className="max-w-[600px] text-muted-foreground md:text-xl">
                 Join us in building the future of financial technology. Our AI-powered platform is disrupting a $500B
                 market with 215% YoY growth.
-              </p>
-              <div className="flex flex-col gap-3 sm:flex-row">
-                <Button
+              </p> */}
+              {/* <RainbowButton></RainbowButton> */}
+              <div className="flex flex-col gap-3 sm:flex-row justify-center">
+                <RainbowButton
                   size="lg"
                   className="gap-2 cursor-pointer"
                   onClick={() => {
@@ -334,7 +136,7 @@ export default function main() {
                 >
                   Request Investor Access
                   <ArrowRight className="h-4 w-4" />
-                </Button>
+                </RainbowButton>
                 <Button
                   size="lg"
                   variant="outline"
@@ -343,7 +145,7 @@ export default function main() {
                   View Pitch Deck
                 </Button>
               </div>
-              <div className="flex items-center gap-4 text-sm text-muted-foreground">
+              <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground">
                 <div className="flex -space-x-2">
                   {[1, 2, 3, 4].map((i) => (
                     <div
@@ -351,7 +153,7 @@ export default function main() {
                       className="inline-block h-8 w-8 rounded-full border-2 border-background bg-muted overflow-hidden"
                     >
                       <Image
-                        src={`/placeholder.svg?height=32&width=32&text=${i}`}
+                        src="/person.jpg"
                         alt="Investor"
                         width={32}
                         height={32}
@@ -359,7 +161,9 @@ export default function main() {
                     </div>
                   ))}
                 </div>
+                
                 <span>Joined by 40+ angel investors and VCs</span>
+                
               </div>
             </div>
            <div className="relative flex items-center justify-center lg:justify-end">
