@@ -10,6 +10,7 @@ import MetricsCard from "@/components/metrics-card"
 import Testimonial from "@/components/testimonial"
 import FAQAccordion from "@/components/faq-accordion"
 import MarketChart from "@/components/market-chart"
+
 // import bitcoinAnimation from "@/../public/bitcoin.json";
 
 // const main = () => {
@@ -235,8 +236,8 @@ import { Slot } from "@radix-ui/react-slot"
 import { ChevronRight, BarChart3, Users, TrendingUp, CheckCircle, ArrowRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-
-
+import lottie, { AnimationItem } from 'lottie-web';
+import MyLottieComponent from "./MyLottieComponent";
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 
@@ -299,7 +300,7 @@ Button.displayName = "Button"
 
 export default function main() {
   return (
-    <div className="w-full flex min-h-screen flex-col items-center justify-center bg-background text-foreground">
+    <div className="w-full px-[1.5rem] flex max-w-[100%] min-h-screen flex-col items-center justify-center bg-background text-foreground">
 
       <main className="flex-1">
         {/* Hero Section */}
@@ -361,18 +362,12 @@ export default function main() {
                 <span>Joined by 40+ angel investors and VCs</span>
               </div>
             </div>
-            <div className="relative flex items-center justify-center lg:justify-end">
-              <div className="relative h-[400px] w-full max-w-[500px] overflow-hidden rounded-lg border shadow-xl">
-                <Image
-                  src="/placeholder.svg?height=400&width=500&text=Product+Demo"
-                  alt="Product Demo"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              
-            </div>
-            
+           <div className="relative flex items-center justify-center lg:justify-end">
+  <div className="relative h-[400px] w-full max-w-[500px] overflow-hidden rounded-lg border shadow-xl">
+    <MyLottieComponent animationPath="/business-strategy.json" width="110%" height="110%"  />
+  </div>
+</div>
+
           </div>
         </section>
 
@@ -438,12 +433,13 @@ export default function main() {
                   ))}
                 </div>
                 <div className="relative h-[300px] rounded-lg border overflow-hidden shadow-lg">
-                  <Image
+                  {/* <Image
                     src="/placeholder.svg?height=300&width=500&text=Solution+Visualization"
                     alt="Solution Visualization"
                     fill
                     className="object-cover"
-                  />
+                  /> */}
+                  <MyLottieComponent animationPath="/business-group-meeting.json" height="1000" width="1000"/>
                 </div>
               </div>
             </div>
@@ -593,8 +589,8 @@ export default function main() {
         </section>
 
         {/* Investment Opportunity Section */}
-        <section id="investment" className="py-20 bg-white dark:bg-background">
-          <div className="container">
+        <section id="investment" className="py-20 bg-white dark:bg-background ">
+          <div className="container ">
             <div className="mx-auto mb-12 max-w-[800px] text-center">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Investment Opportunity</h2>
               <p className="mt-4 text-muted-foreground md:text-xl">

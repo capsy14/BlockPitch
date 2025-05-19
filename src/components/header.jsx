@@ -3,10 +3,12 @@ import Link from "next/link"
 import { Button } from "./ui/button"
 import MetaMaskLogin from "./MetaMaskLogin"
 import { useAuth } from "@/context/AuthContext"
+import { Button as Button1 } from "./ui/moving-border";
+import { RainbowButton } from "../components/magicui/rainbow-button";
 
 const Header = () => {
   const { user, logout } = useAuth()
-
+  
   return (
     <div>
       <header className="border-b">
@@ -56,7 +58,13 @@ const Header = () => {
                   <Button variant="ghost">Sign In</Button>
                 </Link>
                 <Link href="/register">
-                  <Button>Get Started</Button>
+                  {/* <Button>Get Started</Button> */}
+                      <RainbowButton className="rounded-xl"
+>
+  Get Started
+</RainbowButton>
+
+
                 </Link>
               </>
             )}
