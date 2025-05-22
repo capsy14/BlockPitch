@@ -5,12 +5,13 @@ import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/Layout";
 import { StartupData } from "@/models/StartupData" // ✅ Correct
-import StartupActions from "@/components/StartupActions"
+import { StartupActions, ConnectWithFounder } from "@/components/StartupActions"
 import { MdOutlineMail } from "react-icons/md";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { MessageSquare, DollarSign, Video  } from "lucide-react"
+import { RequestVideoCallButton } from "@/components/request-video-call-button"
 
 export default async function StartupDetail({
   params
@@ -71,15 +72,16 @@ export default async function StartupDetail({
                   <span>View Pitch Desk</span>
                 </Button>
             </Link>
-            <StartupActions 
+            <ConnectWithFounder
   founderEmail={startup.founderEmail}
   founderName={startup.founderName}
   
 />
-                <Button className="w-full flex items-center justify-center gap-2" variant="secondary">
+                {/* <Button className="w-full flex items-center justify-center gap-2" variant="secondary">
                   <Video className="h-4 w-4" />
                   <span>Request a Video Call</span>
-                </Button>
+                </Button> */}
+                <RequestVideoCallButton founderEmail={startup.founderEmail} founderName={startup.founderName} />
               </div>
             </CardContent>
           </Card>

@@ -7,7 +7,11 @@ import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { LineChart, PieChart, Wallet, TrendingUp, Users } from "lucide-react"
 import axios from "axios"
-
+import { CardHeader } from "@/components/ui/card"
+import Image from "next/image"
+import { CardContent, CardFooter } from "@/components/ui/card"
+import Link from "next/link"
+import { ArrowRight } from "lucide-react"
 export default function InvestorDashboard() {
   const { user, loading } = useAuth()
   const router = useRouter()
@@ -35,6 +39,22 @@ export default function InvestorDashboard() {
     }
   }, [user, loading, router])
 
+
+  const [startups, setStartups] = useState([])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get("/api/startup")
+        console.log("Fetched data:", res.data)
+        setStartups(res.data)
+      } catch (err) {
+        console.error("Error fetching startups:", err)
+      }
+    }
+
+    fetchData()
+  }, [])
   if (loading) {
     return <div className="flex justify-center items-center min-h-screen">Loading...</div>
   }
@@ -103,15 +123,18 @@ export default function InvestorDashboard() {
         </Card>
       </div>
 
+{/* +top 3 startup only  */}
+
 
       <Card className="p-6 mb-8">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-medium">Recommended Startups</h3>
+ <Link href="./dashboard/startups">
           <Button variant="outline">View All</Button>
-        </div>
+          </Link>        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {[1, 2, 3].map((i) => (
+          {/* {[1, 2, 3].map((i) => (
             <Card key={i} className="p-4">
               <div className="w-full h-32 bg-gray-200 rounded mb-3"></div>
               <h4 className="font-medium">Startup {i}</h4>
@@ -121,6 +144,51 @@ export default function InvestorDashboard() {
                 <Button size="sm">View</Button>
               </div>
             </Card>
+          ))} */}
+          
+            {startups.slice(0, 3).map((startup) => (
+            <Card
+              key={startup._id}
+              className="group overflow-hidden border border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1"
+            >
+              <CardHeader className="p-0 overflow-hidden">
+                <div className="relative h-[220px] w-full overflow-hidden">
+                  <Image
+                    src={startup.image || "/image.png"}
+                    alt={startup.name || "Startup Image"}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    style={{ objectPosition: "center" }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+              </CardHeader>
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between mb-3">
+                  <h2 className="text-2xl font-bold tracking-tight group-hover:text-primary transition-colors duration-200">
+                    {startup.startupName}
+                  </h2>
+                  <span className="rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
+                    {startup.industry}
+                  </span>
+                </div>
+                <p className="line-clamp-2 text-muted-foreground leading-relaxed">{startup.description}</p>
+              </CardContent>
+              <CardFooter className="p-6 pt-0">
+                <Link href={`./startups/${startup._id}`} className="w-full">
+                  <Button
+                    className="w-full group/button relative overflow-hidden transition-all duration-300 hover:bg-primary/90"
+                    size="lg"
+                  >
+                    <span className="flex items-center justify-center gap-2 transition-transform duration-300 group-hover/button:translate-x-1">
+                      Invest Now
+                      <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/button:translate-x-1" />
+                    </span>
+                  </Button>
+                </Link>
+              </CardFooter>
+            </Card>
           ))}
         </div>
       </Card>
@@ -128,7 +196,9 @@ export default function InvestorDashboard() {
       <Card className="p-6">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-medium">Recent Transactions</h3>
+        
           <Button variant="outline">View All</Button>
+        
         </div>
 
         <div className="overflow-x-auto">

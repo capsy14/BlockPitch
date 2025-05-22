@@ -21,8 +21,9 @@ interface ConnectWithFounderProps {
   founderEmail: string
   founderName: string
 }
+import { Share2 } from "lucide-react"
 
-export default function ConnectWithFounder({ founderEmail, founderName }: ConnectWithFounderProps) {
+export  function ConnectWithFounder({ founderEmail, founderName }: ConnectWithFounderProps) {
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState(false)
   const { toast } = useToast()
@@ -226,3 +227,42 @@ export default function ConnectWithFounder({ founderEmail, founderName }: Connec
     </>
   )
 }
+
+
+
+interface StartupActionsProps {
+  founderEmail: string
+  founderName?: string
+}
+
+export  function StartupActions({ founderEmail, founderName }: StartupActionsProps) {
+  const { toast } = useToast()
+
+  const handleShare = async () => {
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: `Startup: ${founderName}'s Company`,
+          url: window.location.href,
+        })
+      } else {
+        await navigator.clipboard.writeText(window.location.href)
+        toast({
+          title: "Link copied!",
+          description: "Startup link copied to clipboard",
+        })
+      }
+    } catch (error) {
+      console.error("Error sharing:", error)
+    }
+  }
+
+  return (
+    <Button className="w-full flex items-center justify-center gap-2" variant="outline" onClick={handleShare}>
+      <Share2 className="h-4 w-4" />
+      <span>Share Startup</span>
+    </Button>
+  )
+}
+
+export default { ConnectWithFounder, StartupActions }
