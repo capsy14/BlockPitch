@@ -1,25 +1,35 @@
+
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/Layout";
 import { StartupData } from "@/models/StartupData" // ✅ Correct
-// Mock data for startups (same as in home page)
-// import Image from "next/image"
-import { notFound } from "next/navigation"
+import StartupActions from "@/components/StartupActions"
+import { MdOutlineMail } from "react-icons/md";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
-import { MessageSquare, DollarSign, Video } from "lucide-react"
+import { MessageSquare, DollarSign, Video  } from "lucide-react"
+
 export default async function StartupDetail({
   params
 }: {
   params: { id: string };
 }) {
-  const startup = await StartupData?.findById(params.id).lean(); // Use `.lean()` for plain JavaScript object
+
+  
+  const startup = await StartupData?.findById(params.id).lean();
+
+  // const startup = await StartupData?.findById(params.id).lean(); // Use `.lean()` for plain JavaScript object
 
   if (!startup) {
     return <div className="p-6">Startup not found</div>;
   }
+
+
+
+
 
   return (
     <Layout>
@@ -46,11 +56,9 @@ export default async function StartupDetail({
                 />
               </div>
 
+
               <div className="mt-6 space-y-3">
-                <Button className="w-full flex items-center justify-center gap-2" variant="outline">
-                  <MessageSquare className="h-4 w-4" />
-                  <span>Link Message</span>
-                </Button>
+              
                 <Link href="/sendEth" className="w-full">
                 <Button className="w-full mt-2 flex items-center justify-center gap-2" variant="default">
                   <DollarSign className="h-4 w-4" />
@@ -63,6 +71,11 @@ export default async function StartupDetail({
                   <span>View Pitch Desk</span>
                 </Button>
             </Link>
+            <StartupActions 
+  founderEmail={startup.founderEmail}
+  founderName={startup.founderName}
+  
+/>
                 <Button className="w-full flex items-center justify-center gap-2" variant="secondary">
                   <Video className="h-4 w-4" />
                   <span>Request a Video Call</span>

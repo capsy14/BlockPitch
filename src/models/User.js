@@ -8,6 +8,7 @@ const messageSchema = new Schema({
   timestamp: { type: Date, default: Date.now }, // When the message was sent
 });
 
+
 const UserSchema = new Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },

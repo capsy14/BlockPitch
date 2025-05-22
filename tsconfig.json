@@ -24,6 +24,9 @@
     ]
   },
   "include": [
+    "global.d.ts",
+     "types/**/*.d.ts",
+"app/api/**/*",
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
@@ -34,7 +37,7 @@
     "src/components/uploadModal.jsx",
     "src/components/startupDashboard.jsx",
     "src/components/ui/button.jsx",
-    "src/lib/socket.js"
+    "src/lib/socket.ts"
   ],
   "exclude": ["node_modules"]
 }
