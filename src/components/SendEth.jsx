@@ -1,136 +1,170 @@
-
-"use client"
-import { useState, useEffect } from "react"
-import { ethers } from "ethers"
-import html2canvas from "html2canvas"
-import axios from "axios"
-import { motion } from "framer-motion"
-import { Loader2, CheckCircle, AlertCircle, Send, Wallet, LinkIcon } from "lucide-react"
-
+"use client";
+import { useState, useEffect } from "react";
+import { ethers } from "ethers";
+import html2canvas from "html2canvas";
+import axios from "axios";
+import { motion } from "framer-motion";
+import {
+  Loader2,
+  CheckCircle,
+  AlertCircle,
+  Send,
+  Wallet,
+  LinkIcon
+} from "lucide-react";
+// import {Link} from 'react-router-dom'
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 const SendETH = () => {
-  const [walletAddress, setWalletAddress] = useState("")
-  const [startupId, setStartupId] = useState("")
-  const [startupName, setStartupName] = useState("")
-  const [recipient, setRecipient] = useState("")
-  const [amount, setAmount] = useState("")
-  const [status, setStatus] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
-  const [uploadedLinks, setUploadedLinks] = useState([])
-
-  const API_KEY = "94fd116fe26934e0a286"
-  const API_SECRET = "b1ffafe6e06b8e8b07bca4284ce045d9087eab4a4040394d0e5ea29f9e34586d"
-
+  const [walletAddress, setWalletAddress] = useState("");
+  const [startupId, setStartupId] = useState("");
+  const [startupName, setStartupName] = useState("");
+  const [recipient, setRecipient] = useState("");
+  const [amount, setAmount] = useState("");
+  const [status, setStatus] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [uploadedLinks, setUploadedLinks] = useState([]);
+  const API_KEY = "94fd116fe26934e0a286";
+  const API_SECRET =
+    "b1ffafe6e06b8e8b07bca4284ce045d9087eab4a4040394d0e5ea29f9e34586d";
   useEffect(() => {
-    checkWalletConnection()
-    const stored = JSON.parse(localStorage.getItem("uploadedLinks")) || []
-    setUploadedLinks(stored)
-  }, [])
+    checkWalletConnection();
+    const stored = JSON.parse(localStorage.getItem("uploadedLinks")) || [];
+    setUploadedLinks(stored);
+  }, []);
 
   const checkWalletConnection = async () => {
     if (window.ethereum) {
       try {
-        const provider = new ethers.BrowserProvider(window.ethereum)
-        const accounts = await provider.send("eth_accounts", [])
-        if (accounts.length) setWalletAddress(accounts[0])
+        const provider = new ethers.BrowserProvider(window.ethereum);
+        const accounts = await provider.send("eth_accounts", []);
+        if (accounts.length) setWalletAddress(accounts[0]);
       } catch (e) {
-        console.error(e)
+        console.error(e);
       }
     }
-  }
+  };
 
   const connectWallet = async () => {
-    if (!window.ethereum) return alert("MetaMask required")
+    if (!window.ethereum) return alert("MetaMask required");
     try {
-      setIsLoading(true)
-      const provider = new ethers.BrowserProvider(window.ethereum)
-      const accounts = await provider.send("eth_requestAccounts", [])
-      setWalletAddress(accounts[0])
+      setIsLoading(true);
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      const accounts = await provider.send("eth_requestAccounts", []);
+      setWalletAddress(accounts[0]);
     } catch (e) {
-      console.error(e)
+      console.error(e);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   const takeScreenshot = async () => {
-    const canvas = await html2canvas(document.body, { scale: 2, useCORS: true })
-    return new Promise((res) => canvas.toBlob(res, "image/png"))
-  }
+    const canvas = await html2canvas(document.body, {
+      scale: 2,
+      useCORS: true
+    });
+    return new Promise((res) => canvas.toBlob(res, "image/png"));
+  };
 
   const uploadToIPFS = async (blob) => {
-    const formData = new FormData()
-    formData.append("file", blob, `tx_${Date.now()}.png`)
-    const resp = await axios.post("https://api.pinata.cloud/pinning/pinFileToIPFS", formData, {
-      maxBodyLength: Number.POSITIVE_INFINITY,
-      headers: {
-        "Content-Type": "multipart/form-data",
-        pinata_api_key: API_KEY,
-        pinata_secret_api_key: API_SECRET,
-      },
-    })
-    return `https://gateway.pinata.cloud/ipfs/${resp.data.IpfsHash}`
-  }
+    const formData = new FormData();
+    formData.append("file", blob, `tx_${Date.now()}.png`);
+    const resp = await axios.post(
+      "https://api.pinata.cloud/pinning/pinFileToIPFS",
+      formData,
+      {
+        maxBodyLength: Number.POSITIVE_INFINITY,
+        headers: {
+          "Content-Type": "multipart/form-data",
+          pinata_api_key: API_KEY,
+          pinata_secret_api_key: API_SECRET
+        }
+      }
+    );
+    return `https://gateway.pinata.cloud/ipfs/${resp.data.IpfsHash}`;
+  };
 
   const sendETH = async () => {
     if (!window.ethereum) {
-      setStatus("MetaMask required")
-      return
+      setStatus("MetaMask required");
+      return;
     }
     if (!startupId || !startupName || !recipient || !amount) {
-      setStatus("Fill in all fields")
-      return
+      setStatus("Fill in all fields");
+      return;
     }
     try {
-      setIsLoading(true)
-      setStatus("Initiating transaction...")
+      setIsLoading(true);
+      setStatus("Initiating transaction...");
 
-      const provider = new ethers.BrowserProvider(window.ethereum)
-      const signer = await provider.getSigner()
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      const signer = await provider.getSigner();
       const tx = await signer.sendTransaction({
         to: recipient,
-        value: ethers.parseEther(amount),
-      })
-      setStatus(`Sent! Hash: ${tx.hash}`)
-      await tx.wait()
-      setStatus("Transaction confirmed! Taking screenshot...")
+        value: ethers.parseEther(amount)
+      });
+      setStatus(`Sent! Hash: ${tx.hash}`);
+      await tx.wait();
+      setStatus("Transaction confirmed! Taking screenshot...");
 
-      const blob = await takeScreenshot()
-      setStatus("Uploading to IPFS...")
-      const ipfsUrl = await uploadToIPFS(blob)
-      setStatus("Transaction recorded successfully!")
+      const blob = await takeScreenshot();
+      setStatus("Uploading to IPFS...");
+      const ipfsUrl = await uploadToIPFS(blob);
+      setStatus("Transaction recorded successfully!");
 
-      const entry = { startupId, startupName, recipient, amount, ipfsUrl, timestamp: new Date().toISOString() }
-      const updated = [...uploadedLinks, entry]
-      setUploadedLinks(updated)
-      localStorage.setItem("uploadedLinks", JSON.stringify(updated))
+      const entry = {
+        startupId,
+        startupName,
+        recipient,
+        amount,
+        ipfsUrl,
+        timestamp: new Date().toISOString()
+      };
+      const updated = [...uploadedLinks, entry];
+      setUploadedLinks(updated);
+      localStorage.setItem("uploadedLinks", JSON.stringify(updated));
 
       // Clear form fields after successful transaction
-      setStartupId("")
-      setStartupName("")
-      setRecipient("")
-      setAmount("")
+      setStartupId("");
+      setStartupName("");
+      setRecipient("");
+      setAmount("");
     } catch (e) {
-      setStatus(`Error: ${e.message}`)
+      setStatus(`Error: ${e.message}`);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   const formatAddress = (address) => {
-    if (!address) return ""
-    return `${address.substring(0, 6)}...${address.substring(address.length - 4)}`
-  }
+    if (!address) return "";
+    return `${address.substring(0, 6)}...${address.substring(
+      address.length - 4
+    )}`;
+  };
 
   const getStatusIcon = () => {
-    if (isLoading) return <Loader2 className="animate-spin mr-2" size={18} />
-    if (status.includes("Error")) return <AlertCircle className="mr-2 text-red-500" size={18} />
+    if (isLoading) return <Loader2 className="animate-spin mr-2" size={18} />;
+    if (status.includes("Error"))
+      return <AlertCircle className="mr-2 text-red-500" size={18} />;
     if (status.includes("confirmed") || status.includes("success"))
-      return <CheckCircle className="mr-2 text-green-500" size={18} />
-    return null
-  }
+      return <CheckCircle className="mr-2 text-green-500" size={18} />;
+    return null;
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-3xl mx-auto mb-4 flex">
+        <Link
+          href="/investor/dashboard/startups"
+          className="inline-flex items-center text-primary hover:underline"
+        >
+          <ArrowLeft className="mr-2 h-5 w-5" />
+          Back to Startups
+        </Link>
+      </div>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -145,11 +179,17 @@ const SendETH = () => {
             className="flex items-center justify-center mb-6"
           >
             <Wallet className="h-10 w-10 text-slate-600 mr-3" />
-            <h1 className="text-3xl font-bold text-gray-800">Ethereum Wallet</h1>
+            <h1 className="text-3xl font-bold text-gray-800">
+              Ethereum Wallet
+            </h1>
           </motion.div>
 
           {!walletAddress ? (
-            <motion.div className="flex justify-center my-12" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+            <motion.div
+              className="flex justify-center my-12"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+            >
               <button
                 onClick={connectWallet}
                 disabled={isLoading}
@@ -157,7 +197,8 @@ const SendETH = () => {
               >
                 {isLoading ? (
                   <>
-                    <Loader2 className="animate-spin mr-2" size={20} /> Connecting...
+                    <Loader2 className="animate-spin mr-2" size={20} />{" "}
+                    Connecting...
                   </>
                 ) : (
                   <>Login with MetaMask</>
@@ -174,7 +215,9 @@ const SendETH = () => {
               <div className="inline-flex items-center px-4 py-2 bg-slate-100 text-slate-800 rounded-full">
                 <Wallet className="h-4 w-4 mr-2" />
                 <span className="font-medium">Connected: </span>
-                <span className="ml-2 font-mono">{formatAddress(walletAddress)}</span>
+                <span className="ml-2 font-mono">
+                  {formatAddress(walletAddress)}
+                </span>
               </div>
             </motion.div>
           )}
@@ -186,7 +229,9 @@ const SendETH = () => {
               transition={{ delay: 0.3, duration: 0.5 }}
               className="mt-8"
             >
-              <h2 className="text-xl font-semibold text-gray-700 mb-6 text-center">Transaction Details</h2>
+              <h2 className="text-xl font-semibold text-gray-700 mb-6 text-center">
+                Transaction Details
+              </h2>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                 <motion.div whileHover={{ y: -2 }} className="group">
@@ -252,25 +297,47 @@ const SendETH = () => {
                 >
                   {isLoading ? (
                     <>
-                      <Loader2 className="animate-spin mr-2" size={20} /> Processing...
+                      <Loader2 className="animate-spin mr-2" size={20} />{" "}
+                      Processing...
                     </>
                   ) : (
                     <>
                       <Send className="mr-2" size={20} /> Send ETH
                     </>
+                    
                   )}
+                  
                 </motion.button>
-              </div>
 
+               
+              </div>
+ <div>
+                  {status.includes("Transaction recorded successfully") && (
+                    <div className="flex justify-center mt-8">
+                      <Link href="/investor/dashboard/investments">
+                        <Button className="bg-slate-600 text-white font-medium rounded-lg shadow-md hover:bg-slate-700 transition-all duration-200">
+                          
+                          Go to Investment History
+                          <ArrowRight className="ml-2 h-5 w-5" />
+                        </Button>
+                      </Link>
+                    </div>
+                  )}
+                </div>
               {status && (
-                <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mt-6 text-center">
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mt-6 text-center"
+                >
                   <div
                     className={`inline-flex items-center px-4 py-2 rounded-full text-sm ${
                       status.includes("Error")
                         ? "bg-red-100 text-red-800"
-                        : status.includes("confirmed") || status.includes("success")
-                          ? "bg-green-100 text-green-800"
-                          : "bg-blue-100 text-blue-800"
+                        : status.includes("confirmed") ||
+                          status.includes("success")
+                        ? "bg-green-100 text-green-800"
+                        : "bg-blue-100 text-blue-800"
                     }`}
                   >
                     {getStatusIcon()}
@@ -289,13 +356,22 @@ const SendETH = () => {
             transition={{ delay: 0.5 }}
             className="mt-8 border-t border-gray-200 bg-gray-50 p-8"
           >
-            <h2 className="text-xl font-semibold text-gray-700 mb-6">Transaction History</h2>
+            <h2 className="text-xl font-semibold text-gray-700 mb-6">
+              Transaction History
+            </h2>
 
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
                   <tr>
-                    {["#", "Startup ID", "Startup Name", "Recipient", "Amount (ETH)", "Proof"].map((header) => (
+                    {[
+                      "#",
+                      "Startup ID",
+                      "Startup Name",
+                      "Recipient",
+                      "Amount (ETH)",
+                      "Proof"
+                    ].map((header) => (
                       <th
                         key={header}
                         className="px-4 py-3 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider rounded-t-lg"
@@ -312,13 +388,25 @@ const SendETH = () => {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.1 * i }}
-                      className={`${i % 2 === 0 ? "bg-white" : "bg-gray-50"} hover:bg-slate-50 transition-colors duration-150`}
+                      className={`${
+                        i % 2 === 0 ? "bg-white" : "bg-gray-50"
+                      } hover:bg-slate-50 transition-colors duration-150`}
                     >
-                      <td className="px-4 py-3 text-sm text-gray-500">{i + 1}</td>
-                      <td className="px-4 py-3 text-sm text-gray-800 font-medium">{item.startupId}</td>
-                      <td className="px-4 py-3 text-sm text-gray-800">{item.startupName}</td>
-                      <td className="px-4 py-3 text-sm font-mono text-gray-600">{formatAddress(item.recipient)}</td>
-                      <td className="px-4 py-3 text-sm text-gray-800">{item.amount}</td>
+                      <td className="px-4 py-3 text-sm text-gray-500">
+                        {i + 1}
+                      </td>
+                      <td className="px-4 py-3 text-sm text-gray-800 font-medium">
+                        {item.startupId}
+                      </td>
+                      <td className="px-4 py-3 text-sm text-gray-800">
+                        {item.startupName}
+                      </td>
+                      <td className="px-4 py-3 text-sm font-mono text-gray-600">
+                        {formatAddress(item.recipient)}
+                      </td>
+                      <td className="px-4 py-3 text-sm text-gray-800">
+                        {item.amount}
+                      </td>
                       <td className="px-4 py-3 text-sm">
                         <motion.a
                           href={item.ipfsUrl}
@@ -341,11 +429,10 @@ const SendETH = () => {
         )}
       </motion.div>
     </div>
-  )
-}
+  );
+};
 
-export default SendETH
-
+export default SendETH;
 
 // "use client"
 // import React, { useState, useEffect } from "react";
@@ -616,6 +703,5 @@ export default SendETH
 // const rowHoverStyle = {
 //   backgroundColor: "#fafbfc",
 // };
-
 
 // export default SendETH;

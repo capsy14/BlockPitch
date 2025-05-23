@@ -12,6 +12,7 @@ import Image from "next/image"
 import { CardContent, CardFooter } from "@/components/ui/card"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
+import { FileText } from "lucide-react"
 export default function InvestorDashboard() {
   const { user, loading } = useAuth()
   const router = useRouter()
@@ -41,6 +42,16 @@ export default function InvestorDashboard() {
 
 
   const [startups, setStartups] = useState([])
+
+
+  const [ethTransactions, setEthTransactions] = useState([]);
+
+useEffect(() => {
+  // Read from localStorage (same as SendEth)
+  const stored = JSON.parse(localStorage.getItem("uploadedLinks")) || [];
+  setEthTransactions(stored);
+}, []);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -196,9 +207,9 @@ export default function InvestorDashboard() {
       <Card className="p-6">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-medium">Recent Transactions</h3>
-        
+          <Link href="./dashboard/investmentsi">
           <Button variant="outline">View All</Button>
-        
+        </Link>
         </div>
 
         <div className="overflow-x-auto">
@@ -212,24 +223,37 @@ export default function InvestorDashboard() {
               </tr>
             </thead>
             <tbody>
-              {investedStartups.map((tx, i) => (
-                <tr key={i} className="border-b">
-                  {/* <td className="py-3 px-2">{tx.date}</td> */}
-                  <td className="py-3 px-2">{tx.startup}</td>
-                  {/* <td className="py-3 px-2">{tx.startup}</td> */}
-                  <td className="py-3 px-2">{tx.investedAmount}</td>
-                  <td className="py-3 px-2">
-                    <span
-                      className={`px-2 py-1 rounded text-xs ${
-                        tx.status === "Completed" ? "bg-green-100 text-green-800" : "bg-yellow-100 text-yellow-800"
-                      }`}
-                    >
-                      {tx.status}
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
+  {ethTransactions.length === 0 ? (
+    <tr>
+      <td colSpan={5} className="py-6 text-center text-muted-foreground">
+        No transactions found.
+      </td>
+    </tr>
+  ) : (
+    ethTransactions.slice(0,3).map((tx, i) => (
+      <tr key={i} className="border-b">
+        <td className="py-3 px-2">{tx.startupId}</td>
+        <td className="py-3 px-2">{tx.startupName}</td>
+        <td className="py-3 px-2">{tx.amount}</td>
+        <td className="py-3 px-2">
+          <a
+            href={tx.ipfsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 underline"
+          >
+            <Button variant="outline" size="sm">
+            <FileText className="mr-2 h-4 w-4" />
+            View Proof
+          </Button>
+            
+          </a>
+        </td>
+      </tr>
+    ))
+  )}
+</tbody>
+           
           </table>
         </div>
       </Card>
