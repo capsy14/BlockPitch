@@ -32,9 +32,14 @@ import { useState } from "react";
 import Link from "next/link";
 import router from "next/router";
 
+
+import { useEffect } from "react";
+import { useAuth } from "@/context/AuthContext";
+
 export default function StartupForm() {
   const [step, setStep] = useState(1);
   const totalSteps = 4;
+  const { user } = useAuth();
 
   const [form, setForm] = useState({
     name: "",
@@ -43,15 +48,26 @@ export default function StartupForm() {
     location: "",
     problem: "",
     solution: "",
-    founderName: "",
-    founderEmail: "",
+    founderName: user && user.role === "startup" ? user.name : "",
+    founderEmail:   user && user.role === "startup" ? user.email : "",
     startupName: "",
     founderLinkedIn: "",
     cofounderName: "",
-    cofounderEmail: "",
+    // cofounderEmail: "",
+    cofounderEmail:"",
     cofounderLinkedin: "",
    pitchDeck: ""
   });
+
+  useEffect(() => {
+  if (user && user.role === "startup") {
+    setForm((prev) => ({
+      ...prev,
+      founderName: user.name,
+      founderEmail: user.email
+    }));
+  }
+}, [user]);
 
 //  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 //   const file = e.target.files?.[0];
@@ -258,18 +274,25 @@ export default function StartupForm() {
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="founder-name">Founder Name</Label>
-                      <Input
+                      {/* <Input
                         id="founder-name"
                         value={form.founderName}
                         onChange={(e) =>
                           setForm({ ...form, founderName: e.target.value })
                         }
                         placeholder="Full name"
-                      />
+                      /> */}
+                      <Input
+  id="founder-name"
+  value={form.founderName}
+  readOnly
+  className="bg-gray-100 cursor-not-allowed"
+  placeholder="Full name"
+/>
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="founder-email">Email</Label>
-                      <Input
+                      {/* <Input
                         id="founder-email"
                         type="email"
                         value={form.founderEmail}
@@ -277,7 +300,14 @@ export default function StartupForm() {
                           setForm({ ...form, founderEmail: e.target.value })
                         }
                         placeholder="Email address"
-                      />
+                      /> */}
+                       <Input
+  id="founder-email"
+  type="email"
+  value={form.founderEmail}
+  readOnly
+  className="bg-gray-100 cursor-not-allowed"
+/>
                     </div>
                   </div>
 
@@ -327,6 +357,7 @@ export default function StartupForm() {
                         }
                         placeholder="Email address"
                       />
+                     
                     </div>
                   </div>
 

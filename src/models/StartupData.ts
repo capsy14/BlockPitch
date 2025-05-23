@@ -31,6 +31,7 @@ const MessageSchema = new Schema<IMessage>({
   timestamp: { type: Date, default: Date.now },
 });
 // Define the schema
+
 const StartupSchema = new Schema<IStartup>({
   startupName: { type: String, required: true },
   description: String,

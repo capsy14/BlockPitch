@@ -27,17 +27,14 @@ export function DashboardSidebar() {
       href: `${basePath}/`,
       active: pathname === basePath,
     },
-    {
-      title: "Messages",
-      icon: Building2,
-      href: `${basePath}/messages`,
-      active: pathname === `${basePath}/messages` || pathname.startsWith(`${basePath}/startups/`),
-    },
+    
+   
+
     {
       title: "My Startups",
       icon: CreditCard,
-      href: `${basePath}/mystartups`,
-      active: pathname === `${basePath}/mystartups`,
+      href: `${basePath}/myStartups`,
+      active: pathname === `${basePath}/myStartups`,
     },
     {
       title: "Add Startup",
@@ -89,7 +86,7 @@ export function DashboardSidebar() {
           </div>
           <div className="flex items-center gap-1">
             {/* <ModeToggle /> */}
-            <Button variant="ghost" size="icon" title="Logout">
+            <Button  variant="ghost" size="icon" title="Logout">
               <LogOut className="h-4 w-4" />
             </Button>
           </div>

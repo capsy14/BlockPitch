@@ -21,14 +21,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {/* <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange> */}
+ 
         <SidebarProvider>
           <div className="flex h-screen w-full">
             <DashboardSidebar />
             <div className="flex-1 overflow-auto">{children}</div>
           </div>
         </SidebarProvider>
-        {/* </ThemeProvider> */}
+       
       </body>
     </html>
   );

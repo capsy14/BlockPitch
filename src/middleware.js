@@ -13,7 +13,7 @@ export async function middleware(request) {
   const { pathname } = request.nextUrl
   const JWT_SECRET = process.env.JWT_SECRET
 
-  console.log("currently at", pathname)
+  // console.log("currently at", pathname)
 
   const matchedRoute = protectedRoutes.find(
     (route) => pathname === route.path || pathname.startsWith(`${route.path}/`)
@@ -22,7 +22,7 @@ export async function middleware(request) {
   if (matchedRoute) {
     const token = request.cookies.get("auth_token")?.value
     console.log(token)
-    console.log("MITTHU")
+    
 
     if (!token) {
       return NextResponse.redirect(new URL("/login", request.url))
@@ -30,7 +30,7 @@ export async function middleware(request) {
 
     try {
       const { payload } = await jwtVerify(token, new TextEncoder().encode(JWT_SECRET)) // Use jose to verify
-      console.log("✅ Token verified:", payload)
+      // console.log("✅ Token verified:", payload)
       
       return NextResponse.next() // Allow the request to proceed
     } catch (error) {
