@@ -16,6 +16,8 @@ import {
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { useSearchParams } from "next/navigation";
+import { useAuth } from "@/context/AuthContext"; 
 const SendETH = () => {
   const [walletAddress, setWalletAddress] = useState("");
   const [startupId, setStartupId] = useState("");
@@ -28,6 +30,19 @@ const SendETH = () => {
   const API_KEY = "94fd116fe26934e0a286";
   const API_SECRET =
     "b1ffafe6e06b8e8b07bca4284ce045d9087eab4a4040394d0e5ea29f9e34586d";
+  const searchParams = useSearchParams();
+  const startupIdFromQuery = searchParams.get("startupId") || "";
+  const walletAddressFromQuery = searchParams.get("walletAddress") || "";
+  const startupNameFromQuery = searchParams.get("startupName") || "";
+  const { user } = useAuth();
+   if (!user) {
+    setStatus("You must be logged in as an investor to invest.");
+    return;
+  }
+ 
+
+
+
   useEffect(() => {
     checkWalletConnection();
     const stored = JSON.parse(localStorage.getItem("uploadedLinks")) || [];
@@ -131,6 +146,20 @@ const SendETH = () => {
       setStartupName("");
       setRecipient("");
       setAmount("");
+
+      // After transaction and IPFS upload succeed:
+      await fetch("/api/investment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          startupId,
+          investorId: user.id, // get from your auth context
+          name: user.name,
+          email: user.email,
+          amount,
+          walletAddress
+        })
+      });
     } catch (e) {
       setStatus(`Error: ${e.message}`);
     } finally {
@@ -144,6 +173,12 @@ const SendETH = () => {
       address.length - 4
     )}`;
   };
+
+  useEffect(() => {
+    if (startupIdFromQuery) setStartupId(startupIdFromQuery);
+    if (walletAddressFromQuery) setRecipient(walletAddressFromQuery);
+    if (startupNameFromQuery) setStartupName(startupNameFromQuery);
+  }, [startupIdFromQuery, walletAddressFromQuery, startupNameFromQuery]);
 
   const getStatusIcon = () => {
     if (isLoading) return <Loader2 className="animate-spin mr-2" size={18} />;
@@ -238,12 +273,20 @@ const SendETH = () => {
                   <label className="block text-sm font-medium text-gray-700 mb-1 ml-1 group-hover:text-slate-600 transition-colors">
                     Startup ID
                   </label>
-                  <input
+                  {/* <input
                     type="text"
                     placeholder="Enter startup ID"
                     value={startupId}
                     onChange={(e) => setStartupId(e.target.value)}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent outline-none transition-all duration-200"
+                  /> */}
+                  <input
+                    type="text"
+                    placeholder="Enter startup ID"
+                    value={startupId}
+                    onChange={(e) => setStartupId(e.target.value)}
+                    readOnly={!!startupIdFromQuery}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg ... "
                   />
                 </motion.div>
 
@@ -255,6 +298,7 @@ const SendETH = () => {
                     type="text"
                     placeholder="Enter startup name"
                     value={startupName}
+                    readOnly={!!startupNameFromQuery}
                     onChange={(e) => setStartupName(e.target.value)}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent outline-none transition-all duration-200"
                   />
@@ -264,12 +308,20 @@ const SendETH = () => {
                   <label className="block text-sm font-medium text-gray-700 mb-1 ml-1 group-hover:text-slate-600 transition-colors">
                     Recipient Address
                   </label>
-                  <input
+                  {/* <input
                     type="text"
                     placeholder="0x..."
                     value={recipient}
                     onChange={(e) => setRecipient(e.target.value)}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent outline-none transition-all duration-200 font-mono text-sm"
+                  /> */}
+                  <input
+                    type="text"
+                    placeholder="0x..."
+                    value={recipient}
+                    onChange={(e) => setRecipient(e.target.value)}
+                    readOnly={!!walletAddressFromQuery}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg ... font-mono text-sm"
                   />
                 </motion.div>
 
@@ -304,26 +356,21 @@ const SendETH = () => {
                     <>
                       <Send className="mr-2" size={20} /> Send ETH
                     </>
-                    
                   )}
-                  
                 </motion.button>
-
-               
               </div>
- <div>
-                  {status.includes("Transaction recorded successfully") && (
-                    <div className="flex justify-center mt-8">
-                      <Link href="/investor/dashboard/investments">
-                        <Button className="bg-slate-600 text-white font-medium rounded-lg shadow-md hover:bg-slate-700 transition-all duration-200">
-                          
-                          Go to Investment History
-                          <ArrowRight className="ml-2 h-5 w-5" />
-                        </Button>
-                      </Link>
-                    </div>
-                  )}
-                </div>
+              <div>
+                {status.includes("Transaction recorded successfully") && (
+                  <div className="flex justify-center mt-8">
+                    <Link href="/investor/dashboard/investments">
+                      <Button className="bg-slate-600 text-white font-medium rounded-lg shadow-md hover:bg-slate-700 transition-all duration-200">
+                        Go to Investment History
+                        <ArrowRight className="ml-2 h-5 w-5" />
+                      </Button>
+                    </Link>
+                  </div>
+                )}
+              </div>
               {status && (
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}

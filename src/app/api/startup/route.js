@@ -20,11 +20,19 @@ export async function POST(request) {
       cofounderName,
       cofounderEmail,
       cofounderLinkedin,
-       pitchDeck
+       pitchDeck,
+         walletAddress,
     } = body;
 
     // Validate required fields
-    if (!startupName || !description || !industry || !location) {
+    if (!startupName || !description || !industry || !location || !walletAddress) {
+      console.error("Missing required fields:", {
+        startupName,
+        description,
+        industry,
+        location,
+        walletAddress
+      });
       return NextResponse.json(
         {
           error:
@@ -49,7 +57,8 @@ export async function POST(request) {
       cofounderName,
       cofounderEmail,
       cofounderLinkedin,
-      pitchDeck
+      pitchDeck,
+        walletAddress,
     });
 
     await newStartup.save();

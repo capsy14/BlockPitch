@@ -60,12 +60,21 @@ export default async function StartupDetail({
 
               <div className="mt-6 space-y-3">
               
-                <Link href="/sendEth" className="w-full">
+                {/* <Link href="/sendEth" className="w-full">
                 <Button className="w-full mt-2 flex items-center justify-center gap-2" variant="default">
                   <DollarSign className="h-4 w-4" />
                   <span>Invest Now</span>
                 </Button>
-                </Link>
+                </Link> */}
+                <Link
+  href={`/sendEth?startupId=${startup._id}&walletAddress=${startup.walletAddress}&startupName=${startup.startupName}`}
+  className="w-full"
+>
+  <Button className="w-full mt-2 flex items-center justify-center gap-2" variant="default">
+    <DollarSign className="h-4 w-4" />
+    <span>Invest Now</span>
+  </Button>
+</Link>
             <Link href = {startup.pitchDeck} target="_blank">
                 <Button className="w-full mt-2 flex items-center justify-center gap-2" variant="secondary">
                   <Video className="h-4 w-4" />

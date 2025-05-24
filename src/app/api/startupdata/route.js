@@ -2,7 +2,8 @@ import { NextResponse } from "next/server"
 import { connectToDatabase } from "@/lib/db"
 import { verifyToken } from "@/lib/auth"
 import User from "@/models/User"
-import Startup from "@/models/Startup"
+// import Startup from "@/models/Startup"
+import { StartupData } from "@/models/StartupData";
 
 export async function GET(req) {
   try {
@@ -25,7 +26,8 @@ export async function GET(req) {
     //   return NextResponse.json({ error: "User not found" }, { status: 404 })
     // }
 
-    const startup = await Startup.findOne({ email:decoded.email })
+    // const startup = await Startup.findOne({ email:decoded.email })
+    const startup = await StartupData.findOne({ founderEmail: decoded.email })
     if (!startup) {
       return NextResponse.json({ error: "Startup not found" }, { status: 404 })
     }
