@@ -329,52 +329,52 @@ export default function main() {
               </p>
             </div>
 
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="flex flex-wrap justify-center gap-8 text-center">
               <TeamMember
-                name="Sarah Johnson"
+                name="Kartik Bhatt"
                 role="CEO & Co-Founder"
-                image="/placeholder.svg?height=300&width=300&text=SJ"
-                bio="Former VP at PayPal. Led growth from $10M to $100M ARR. Stanford MBA."
-                linkedin="#"
+                image="https://media.licdn.com/dms/image/v2/D5603AQGarAxqu1ZgNg/profile-displayphoto-shrink_400_400/B56ZV5bcA.GsAg-/0/1741498997370?e=1753315200&v=beta&t=q7gwinzX1o2QCE9aggXR8qsocRWLc7T5A9qmduiIncE"
+                bio="SWE Intern @PayPal | Web3 Wing Senior Member @Axios"
+                linkedin="https://www.linkedin.com/in/kartik-bhatt-2b9b2b256/"
               />
               <TeamMember
-                name="Michael Chen"
-                role="CTO & Co-Founder"
-                image="/placeholder.svg?height=300&width=300&text=MC"
-                bio="Ex-Google AI Lead. 15+ years in fintech. MIT Computer Science PhD."
-                linkedin="#"
+                name="Bhanu Singh"
+                role="Frontend & Backend"
+                image="https://media.licdn.com/dms/image/v2/D5603AQHVB_RMRDU7kQ/profile-displayphoto-shrink_400_400/B56ZWV6_QnHoAg-/0/1741977024248?e=1753315200&v=beta&t=EqZ2QydQ6dLYbFE1USmHBEEZBG47wmt8rDXfmif_Prk"
+                bio="Campus Ambassador of @PhysicsWallah"
+                linkedin="https://www.linkedin.com/in/bhanu-singh-405581249/"
               />
               <TeamMember
-                name="David Rodriguez"
-                role="Chief Product Officer"
-                image="/placeholder.svg?height=300&width=300&text=DR"
-                bio="Previously CPO at Square. Scaled product to 10M+ users. Y Combinator alum."
-                linkedin="#"
+                name="Smit Italiya"
+                role="Chief Product Officer AI"
+                image="https://media.licdn.com/dms/image/v2/D4D03AQGvAmJrdkxNZA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1724866728344?e=1753315200&v=beta&t=ex8vfjjFtlKexmfXU_IuKvBKqekL0s1MslO9ou2q6Qs"
+                bio="Summer Analyst @Goldman Sachs | Expert @Codeforces"
+                linkedin="https://www.linkedin.com/in/smit-italiya-7b1252257/"
               />
               <TeamMember
-                name="Aisha Patel"
-                role="Chief Revenue Officer"
-                image="/placeholder.svg?height=300&width=300&text=AP"
-                bio="Former Sales Director at Stripe. Generated $50M+ in enterprise deals."
-                linkedin="#"
+                name="Jenil Jain"
+                role="Chief Product Officer AI"
+                image="https://media.licdn.com/dms/image/v2/D5603AQE7S43cHsZ5nA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1676894691115?e=1753315200&v=beta&t=7BtZaeoFMajA5fe1bZKlmGio89pwsSk73KL2YlaulP0"
+                bio="Wen Wing Lead @GDSC IIIT Lucknow."
+                linkedin="https://www.linkedin.com/in/jenil-jain-484095267/"
               />
               <TeamMember
-                name="James Wilson"
-                role="VP of Engineering"
-                image="/placeholder.svg?height=300&width=300&text=JW"
-                bio="Led engineering at Plaid. Built scalable financial infrastructure serving millions."
-                linkedin="#"
+                name="Rishi Rohilla"
+                role="Frontend & Backend"
+                image="https://media.licdn.com/dms/image/v2/D5603AQFOu20VPwdbAg/profile-displayphoto-shrink_400_400/B56ZUpmKexHsAg-/0/1740159630418?e=1753315200&v=beta&t=G-c5itmWdTF9_3lpE11Bgt1e5kNJPUTV3EVjatKpiaQ"
+                bio="Expert @Codeforces"
+                linkedin="https://www.linkedin.com/in/rishirohilla88/"
               />
-              <TeamMember
+              {/* <TeamMember
                 name="Elena Gomez"
                 role="VP of Marketing"
                 image="/placeholder.svg?height=300&width=300&text=EG"
                 bio="Ex-Airbnb Growth Lead. Drove 300% user acquisition improvement in 18 months."
                 linkedin="#"
-              />
+              /> */}
             </div>
 
-            <div className="mt-12 text-center">
+            {/* <div className="mt-12 text-center">
               <h3 className="mb-6 text-xl font-bold">Backed By</h3>
               <div className="flex flex-wrap items-center justify-center gap-8">
                 {[1, 2, 3, 4, 5].map((i) => (
@@ -388,7 +388,7 @@ export default function main() {
                   </div>
                 ))}
               </div>
-            </div>
+            </div> */}
           </div>
         </section>
 

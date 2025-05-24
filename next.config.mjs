@@ -4,6 +4,9 @@ const nextConfig = {
   experimental: {
     esmExternals: true // To ensure support for ES Modules
   },
+  images: {
+    domains: ['media.licdn.com'],
+  },
 
   // Webpack configuration for resolving paths
   webpack(config) {
