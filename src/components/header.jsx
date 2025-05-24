@@ -18,18 +18,9 @@ const Header = () => {
               BlockPitch
             </Link>
             <div className="hidden md:flex items-center space-x-6">
-              <a href="#" className="text-sm font-medium">
-                Buy Crypto
-              </a>
-              <a href="#" className="text-sm font-medium">
-                Markets
-              </a>
-              <a href="#" className="text-sm font-medium">
-                Exchange
-              </a>
-              <a href="#" className="text-sm font-medium">
-                NFT/DEX
-              </a>
+              <Link href="/#market" className="text-sm font-medium">Market Opportunity</Link>
+              <Link href="/#team" className="text-sm font-medium">Team</Link>
+              <Link href="/#faq" className="text-sm font-medium">FAQ</Link>
             </div>
           </div>
           <div className="flex items-center space-x-4">

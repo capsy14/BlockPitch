@@ -527,7 +527,7 @@ export default function main() {
         </section>
 
         {/* FAQ Section */}
-        <section className="py-20 bg-white dark:bg-background">
+        <section id="faq" className="py-20 bg-white dark:bg-background">
           <div className="container">
             <div className="mx-auto mb-12 max-w-[800px] text-center">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
