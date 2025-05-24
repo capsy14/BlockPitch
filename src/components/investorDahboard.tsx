@@ -207,7 +207,7 @@ useEffect(() => {
       <Card className="p-6">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-medium">Recent Transactions</h3>
-          <Link href="./dashboard/investmentsi">
+          <Link href="./dashboard/investments">
           <Button variant="outline">View All</Button>
         </Link>
         </div>

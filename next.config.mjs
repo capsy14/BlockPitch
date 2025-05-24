@@ -5,7 +5,7 @@ const nextConfig = {
     esmExternals: true // To ensure support for ES Modules
   },
   images: {
-    domains: ['media.licdn.com'],
+    domains: ['media.licdn.com', 'example.com','insead.edu', 'encrypted-tbn0.gstatic.com', 'upload.wikimedia.org'],
   },
 
   // Webpack configuration for resolving paths

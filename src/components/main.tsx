@@ -508,19 +508,19 @@ export default function main() {
                 quote="The team's execution speed is remarkable. They've consistently hit every milestone ahead of schedule."
                 name="Alex Thompson"
                 role="Partner, Sequoia Capital"
-                image="/placeholder.svg?height=80&width=80&text=AT"
+                image="https://media.licdn.com/dms/image/v2/D4E03AQH6TrPRLm_hgw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1697558218802?e=1753315200&v=beta&t=hvNqTKpCF4BWM5RjB0gcvviVW76vsGaKaNVMeLtxuhE"
               />
               <Testimonial
                 quote="Their product-market fit is the strongest I've seen in the fintech space in the last decade."
                 name="Jennifer Wu"
                 role="Angel Investor, Former CFO at Visa"
-                image="/placeholder.svg?height=80&width=80&text=JW"
+                image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjj62a5RbaVGp1eNl33svrcsvFy58Z4cjdrw&s"
               />
               <Testimonial
                 quote="The founding team combines deep technical expertise with exceptional business acumen. A rare combination."
                 name="Robert Kiyosaki"
                 role="Managing Director, Fintech Ventures"
-                image="/placeholder.svg?height=80&width=80&text=RK"
+                image="https://upload.wikimedia.org/wikipedia/commons/c/c1/Robert_Kiyosaki_by_Gage_Skidmore_2.jpg"
               />
             </div>
           </div>
