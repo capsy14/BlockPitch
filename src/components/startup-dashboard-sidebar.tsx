@@ -43,6 +43,12 @@ export function DashboardSidebar() {
       active: pathname === `${basePath}/investments`,
     },
     {
+      title: "Credits",
+      icon: CreditCard,
+      href: `${basePath}/credits`,
+      active: pathname === `${basePath}/credits`,
+    },
+    {
       title: "Insights",
       icon: LineChart,
       href: `${basePath}/insights`,
