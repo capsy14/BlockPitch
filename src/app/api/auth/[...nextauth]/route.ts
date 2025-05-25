@@ -5,7 +5,7 @@ import { connectToDatabase } from "@/lib/db";
 import { verifyPassword } from "@/lib/auth";
 
 // 1. Define your NextAuth options
-export const authOptions = {
+ const authOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
