@@ -6,8 +6,10 @@ import { StartupData } from "@/models/StartupData";
 
 export async function DELETE(
   req: Request,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
+  const { params } = context;
+
   await connectToDatabase();
 
   const cookieStore = await cookies();

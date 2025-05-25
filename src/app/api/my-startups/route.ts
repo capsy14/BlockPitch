@@ -34,7 +34,7 @@ export async function GET(req: Request) {
   }
 }
 
-export async function DELETE(req: Request, { params }: { params: { id: string } }) {
+export async function (req: Request, { params }: { params: { id: string } }) {
   await connectToDatabase();
 
   // Auth check (optional but recommended)
