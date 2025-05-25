@@ -47,13 +47,14 @@ export function DashboardSidebar() {
       icon: CreditCard,
       href: `${basePath}/credits`,
       active: pathname === `${basePath}/credits`,
-    },
-    {
-      title: "Insights",
-      icon: LineChart,
-      href: `${basePath}/insights`,
-      active: pathname === `${basePath}/insights`,
-    },
+    }
+    // ,
+    // {
+    //   title: "Insights",
+    //   icon: LineChart,
+    //   href: `${basePath}/insights`,
+    //   active: pathname === `${basePath}/insights`,
+    // },
   ]
 
   return (

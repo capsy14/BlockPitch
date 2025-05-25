@@ -185,9 +185,9 @@ export default function Home() {
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80">
             Startup Investment Platform
           </h1>
-          <p className="mt-6 text-xl text-muted-foreground max-w-2xl mx-auto">
+          {/* <p className="mt-6 text-xl text-muted-foreground max-w-2xl mx-auto">
             Discover and invest in the next generation of groundbreaking startups that are shaping tomorrow's world
-          </p>
+          </p> */}
         </div>
 
         {/* Filter Section */}

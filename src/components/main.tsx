@@ -22,10 +22,10 @@ function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-
+import {AnimatedTestimonials} from "@/components/ui/animated-testimonials"
 import { cva, type VariantProps } from "class-variance-authority"
 import { RainbowButton } from "./magicui/rainbow-button";
-
+// import AnimatedTestimonialsDemo from "@/components/team";
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
@@ -73,12 +73,49 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     )
   }
 )
+
+
 Button.displayName = "Button"
+
+
 
 
 export default function main() {
 
    const words = ["better", "cute", "beautiful", "modern"];
+   const testimonials = [
+  {
+    quote: "SWE Intern @PayPal | Web3 Wing Senior Member @Axios",
+    name: "Kartik Bhatt",
+    designation: "CEO & Co-Founder",
+    src: "https://media.licdn.com/dms/image/v2/D5603AQGarAxqu1ZgNg/profile-displayphoto-shrink_400_400/B56ZV5bcA.GsAg-/0/1741498997370?e=1753315200&v=beta&t=q7gwinzX1o2QCE9aggXR8qsocRWLc7T5A9qmduiIncE"
+  },
+  {
+    quote: "Campus Ambassador of @PhysicsWallah",
+    name: "Bhanu Singh",
+    designation: "Frontend & Backend",
+    src: "https://media.licdn.com/dms/image/v2/D5603AQHVB_RMRDU7kQ/profile-displayphoto-shrink_400_400/B56ZWV6_QnHoAg-/0/1741977024248?e=1753315200&v=beta&t=EqZ2QydQ6dLYbFE1USmHBEEZBG47wmt8rDXfmif_Prk"
+  },
+  {
+    quote: "Summer Analyst @Goldman Sachs | Expert @Codeforces",
+    name: "Smit Italiya",
+    designation: "Chief Product Officer AI",
+    src: "https://media.licdn.com/dms/image/v2/D4D03AQGvAmJrdkxNZA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1724866728344?e=1753315200&v=beta&t=ex8vfjjFtlKexmfXU_IuKvBKqekL0s1MslO9ou2q6Qs"
+  },
+  {
+    quote: "Wen Wing Lead @GDSC IIIT Lucknow.",
+    name: "Jenil Jain",
+    designation: "Chief Product Officer AI",
+    src: "https://media.licdn.com/dms/image/v2/D5603AQE7S43cHsZ5nA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1676894691115?e=1753315200&v=beta&t=7BtZaeoFMajA5fe1bZKlmGio89pwsSk73KL2YlaulP0"
+  },
+  {
+    quote: "Expert @Codeforces",
+    name: "Rishi Rohilla",
+    designation: "Frontend & Backend",
+    src: "https://media.licdn.com/dms/image/v2/D5603AQFOu20VPwdbAg/profile-displayphoto-shrink_400_400/B56ZUpmKexHsAg-/0/1740159630418?e=1753315200&v=beta&t=G-c5itmWdTF9_3lpE11Bgt1e5kNJPUTV3EVjatKpiaQ"
+  }
+];
+
   return (
     <div className="w-full px-[2rem] flex max-w-[100%] min-h-screen flex-col items-center justify-center bg-background text-foreground">
 
@@ -329,66 +366,10 @@ export default function main() {
               </p>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-8 text-center">
-              <TeamMember
-                name="Kartik Bhatt"
-                role="CEO & Co-Founder"
-                image="https://media.licdn.com/dms/image/v2/D5603AQGarAxqu1ZgNg/profile-displayphoto-shrink_400_400/B56ZV5bcA.GsAg-/0/1741498997370?e=1753315200&v=beta&t=q7gwinzX1o2QCE9aggXR8qsocRWLc7T5A9qmduiIncE"
-                bio="SWE Intern @PayPal | Web3 Wing Senior Member @Axios"
-                linkedin="https://www.linkedin.com/in/kartik-bhatt-2b9b2b256/"
-              />
-              <TeamMember
-                name="Bhanu Singh"
-                role="Frontend & Backend"
-                image="https://media.licdn.com/dms/image/v2/D5603AQHVB_RMRDU7kQ/profile-displayphoto-shrink_400_400/B56ZWV6_QnHoAg-/0/1741977024248?e=1753315200&v=beta&t=EqZ2QydQ6dLYbFE1USmHBEEZBG47wmt8rDXfmif_Prk"
-                bio="Campus Ambassador of @PhysicsWallah"
-                linkedin="https://www.linkedin.com/in/bhanu-singh-405581249/"
-              />
-              <TeamMember
-                name="Smit Italiya"
-                role="Chief Product Officer AI"
-                image="https://media.licdn.com/dms/image/v2/D4D03AQGvAmJrdkxNZA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1724866728344?e=1753315200&v=beta&t=ex8vfjjFtlKexmfXU_IuKvBKqekL0s1MslO9ou2q6Qs"
-                bio="Summer Analyst @Goldman Sachs | Expert @Codeforces"
-                linkedin="https://www.linkedin.com/in/smit-italiya-7b1252257/"
-              />
-              <TeamMember
-                name="Jenil Jain"
-                role="Chief Product Officer AI"
-                image="https://media.licdn.com/dms/image/v2/D5603AQE7S43cHsZ5nA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1676894691115?e=1753315200&v=beta&t=7BtZaeoFMajA5fe1bZKlmGio89pwsSk73KL2YlaulP0"
-                bio="Wen Wing Lead @GDSC IIIT Lucknow."
-                linkedin="https://www.linkedin.com/in/jenil-jain-484095267/"
-              />
-              <TeamMember
-                name="Rishi Rohilla"
-                role="Frontend & Backend"
-                image="https://media.licdn.com/dms/image/v2/D5603AQFOu20VPwdbAg/profile-displayphoto-shrink_400_400/B56ZUpmKexHsAg-/0/1740159630418?e=1753315200&v=beta&t=G-c5itmWdTF9_3lpE11Bgt1e5kNJPUTV3EVjatKpiaQ"
-                bio="Expert @Codeforces"
-                linkedin="https://www.linkedin.com/in/rishirohilla88/"
-              />
-              {/* <TeamMember
-                name="Elena Gomez"
-                role="VP of Marketing"
-                image="/placeholder.svg?height=300&width=300&text=EG"
-                bio="Ex-Airbnb Growth Lead. Drove 300% user acquisition improvement in 18 months."
-                linkedin="#"
-              /> */}
-            </div>
 
-            {/* <div className="mt-12 text-center">
-              <h3 className="mb-6 text-xl font-bold">Backed By</h3>
-              <div className="flex flex-wrap items-center justify-center gap-8">
-                {[1, 2, 3, 4, 5].map((i) => (
-                  <div key={i} className="h-12 w-32 rounded-md bg-muted">
-                    <Image
-                      src={`/placeholder.svg?height=48&width=128&text=Investor+${i}`}
-                      alt={`Investor ${i}`}
-                      width={128}
-                      height={48}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div> */}
+            <AnimatedTestimonials testimonials={testimonials} />
+          
+            
           </div>
         </section>
 
