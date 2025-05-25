@@ -3,11 +3,7 @@ import MyStartup from "@/components/myStartups"
 import Layout from "@/components/Layout"
 const MyStartups = () => {
   return (
-   
-    // <Layout>
-    //   <MyStartup />
-    // </Layout>
-   
+  
     <Layout>
       <div className="flex flex-1">
      

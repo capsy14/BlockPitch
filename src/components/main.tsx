@@ -1,3 +1,4 @@
+'use client'
 
 import Lottie from "lottie-react";
 import image1 from "@/../public/image1.json";
@@ -7,7 +8,7 @@ import MetricsCard from "@/components/metrics-card"
 import Testimonial from "@/components/testimonial"
 import FAQAccordion from "@/components/faq-accordion"
 import MarketChart from "@/components/market-chart"
-
+import dynamic from "next/dynamic";
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { ChevronRight, BarChart3, Users, TrendingUp, CheckCircle, ArrowRight } from "lucide-react"
@@ -115,6 +116,11 @@ export default function main() {
     src: "https://media.licdn.com/dms/image/v2/D5603AQFOu20VPwdbAg/profile-displayphoto-shrink_400_400/B56ZUpmKexHsAg-/0/1740159630418?e=1753315200&v=beta&t=G-c5itmWdTF9_3lpE11Bgt1e5kNJPUTV3EVjatKpiaQ"
   }
 ];
+const AnimatedTestimonialsClient = dynamic(
+  () => import("@/components/team"),
+  { ssr: false }
+);
+
 
   return (
     <div className="w-full px-[2rem] flex max-w-[100%] min-h-screen flex-col items-center justify-center bg-background text-foreground">
@@ -367,7 +373,7 @@ export default function main() {
             </div>
 
 
-            <AnimatedTestimonials testimonials={testimonials} />
+        <AnimatedTestimonialsClient testimonials={testimonials} />
           
             
           </div>

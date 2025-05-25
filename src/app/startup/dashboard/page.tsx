@@ -1,12 +1,4 @@
-// const { default: StartupDashboard } = require("@/components/startupDashboard");
 
-// const StartupDashboardPage = () => {
-//   return <>
-//     <StartupDashboard/>
-//   </>
-// };
-
-// export default StartupDashboardPage;
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { DashboardSidebar } from "@/components/startup-dashboard-sidebar";
