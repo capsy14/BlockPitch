@@ -36,7 +36,12 @@ const SendETH = () => {
   const startupNameFromQuery = searchParams.get("startupName") || "";
   const { user } = useAuth();
    if (!user) {
-    setStatus("You must be logged in as an investor to invest.");
+    // setStatus("You must be logged in as an investor to invest.");
+      return (
+    <div className="p-6 text-center text-red-600">
+      You must be logged in as an investor to invest.
+    </div>
+  );
     return;
   }
  
