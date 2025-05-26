@@ -41,14 +41,14 @@ export function DashboardSidebar() {
       href: `${basePath}/startups`,
       active: pathname === basePath
     },
-    {
-      title: "Messages",
-      icon: Building2,
-      href: `${basePath}/messages`,
-      active:
-        pathname === `${basePath}/messages` ||
-        pathname.startsWith(`${basePath}/startups/`)
-    },
+    // {
+    //   title: "Messages",
+    //   icon: Building2,
+    //   href: `${basePath}/messages`,
+    //   active:
+    //     pathname === `${basePath}/messages` ||
+    //     pathname.startsWith(`${basePath}/startups/`)
+    // },
     {
       title: "Investments",
       icon: CreditCard,
