@@ -1,13 +1,13 @@
 'use client'
 
-import Lottie from "lottie-react";
+// import Lottie from "lottie-react";
 import image1 from "@/../public/image1.json";
 import InvestorSignupForm from "@/components/investor-signup-form"
 import TeamMember from "@/components/team-member"
 import MetricsCard from "@/components/metrics-card"
 import Testimonial from "@/components/testimonial"
 import FAQAccordion from "@/components/faq-accordion"
-import MarketChart from "@/components/market-chart"
+// import MarketChart from "@/components/market-chart"
 import dynamic from "next/dynamic";
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
@@ -15,7 +15,7 @@ import { ChevronRight, BarChart3, Users, TrendingUp, CheckCircle, ArrowRight } f
 import Image from "next/image"
 import Link from "next/link"
 import lottie, { AnimationItem } from 'lottie-web';
-import MyLottieComponent from "./MyLottieComponent";
+// import MyLottieComponent from "./MyLottieComponent";
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 import { FlipWords } from "./ui/flip-word";
@@ -26,6 +26,10 @@ function cn(...inputs: ClassValue[]) {
 import {AnimatedTestimonials} from "@/components/ui/animated-testimonials"
 import { cva, type VariantProps } from "class-variance-authority"
 import { RainbowButton } from "./magicui/rainbow-button";
+// import dynamic from "next/dynamic";
+const MarketChart = dynamic(() => import("@/components/market-chart"), { ssr: false });
+const MyLottieComponent = dynamic(() => import("./MyLottieComponent"), { ssr: false });
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 // import AnimatedTestimonialsDemo from "@/components/team";
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
