@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
@@ -14,23 +13,17 @@ import { MessageSquare, DollarSign, Video  } from "lucide-react"
 import { RequestVideoCallButton } from "@/components/request-video-call-button"
 
 export default async function StartupDetail({
-  params
+  params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
+  const { id } = await params;
 
-  
-  const startup = await StartupData?.findById(params.id).lean();
-
-  // const startup = await StartupData?.findById(params.id).lean(); // Use `.lean()` for plain JavaScript object
+  const startup = await StartupData?.findById(id).lean();
 
   if (!startup) {
     return <div className="p-6">Startup not found</div>;
   }
-
-
-
-
 
   return (
     <Layout>
