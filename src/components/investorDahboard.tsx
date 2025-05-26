@@ -27,7 +27,7 @@ export default function InvestorDashboard() {
 
     if (user) {
       axios
-        .get("http://localhost:3000/api/investordata", {
+        .get("/api/investordata", {
           headers: { Authorization: `Bearer ${user.token}` },
         })
         .then((response) => setInvestorData(response.data))
