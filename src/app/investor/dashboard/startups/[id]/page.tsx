@@ -3,7 +3,7 @@ import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/Layout";
-import { StartupData } from "@/models/StartupData" // ✅ Correct
+import  StartupData  from "@/models/StartupData" // ✅ Correct
 import { StartupActions, ConnectWithFounder } from "@/components/StartupActions"
 import { MdOutlineMail } from "react-icons/md";
 
@@ -11,6 +11,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { MessageSquare, DollarSign, Video  } from "lucide-react"
 import { RequestVideoCallButton } from "@/components/request-video-call-button"
+import type { Model } from 'mongoose';
+import type { IStartup } from '@/models/StartupData';
 
 export default async function StartupDetail({
   params,
@@ -19,7 +21,14 @@ export default async function StartupDetail({
 }) {
   const { id } = await params;
 
-  const startup = await StartupData?.findById(id).lean();
+
+const TypedStartup = StartupData as Model<IStartup>;
+
+const startup = await TypedStartup
+  .findById(id)
+  .lean()
+  .exec();
+  // const startup = await StartupData?.findById(id).lean();
 
   if (!startup) {
     return <div className="p-6">Startup not found</div>;
@@ -43,7 +52,7 @@ export default async function StartupDetail({
             <CardContent className="p-4">
               <div className="relative aspect-square w-full overflow-hidden rounded-lg">
                 <Image
-                  src={startup.imageUrl || "/image.png"}
+                  src={startup?.imageUrl || "/image.png"}
                   alt={startup.startupName}
                   fill
                   className="object-cover"

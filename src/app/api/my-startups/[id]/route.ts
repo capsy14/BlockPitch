@@ -62,7 +62,7 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { connectToDatabase } from "@/lib/db";
 import { verifyToken } from "@/lib/auth";
-import { StartupData } from "@/models/StartupData";
+import  StartupData  from "@/models/StartupData";
 
 export async function DELETE(
   req: Request,

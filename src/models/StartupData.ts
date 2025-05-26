@@ -1,4 +1,4 @@
-import mongoose, { Document, Schema } from "mongoose";
+import mongoose, { Model, Document, Schema } from "mongoose";
 
 export interface IMessage {
   sender: string; // Email of the sender
@@ -22,6 +22,7 @@ export interface IStartup extends Document {
   cofounderLinkedin?: string;
   pitchDeck?: string;
   walletAddress?: string;
+  imageUrl?: string; // Optional field for image URL
   messages: IMessage[];
   currentInvestors: {
     investorId: string;
@@ -53,6 +54,7 @@ const StartupSchema = new Schema<IStartup>({
   cofounderName: String,
   cofounderEmail: String,
   cofounderLinkedin: String,
+  imageUrl: { type: String, default: "" }, // Optional field for image URL
   walletAddress: { type: String },
   pitchDeck: { type: String, required: true },
 
@@ -70,6 +72,12 @@ const StartupSchema = new Schema<IStartup>({
 });
 
 // Create and export the model
-export const StartupData =
-  mongoose.models.StartupData ||
-  mongoose.model<IStartup>("StartupData", StartupSchema);
+// export const StartupData =
+//   mongoose.models.StartupData ||
+//   mongoose.model<IStartup>("StartupData", StartupSchema);
+
+
+const StartupData = (mongoose.models.StartupData as Model<IStartup>) ||
+                    mongoose.model<IStartup>('StartupData', StartupSchema);
+
+export default StartupData;

@@ -5,7 +5,7 @@ import { connectToDatabase } from "@/lib/db";
 import { verifyPassword } from "@/lib/auth";
 
 // 1. Define your NextAuth options
- const authOptions = {
+const authOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -13,19 +13,43 @@ import { verifyPassword } from "@/lib/auth";
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" }
       },
+      // async authorize(credentials) {
+      //   await connectToDatabase();
+      //   const user = await User.findOne({ email: credentials.email }).exec();
+      //   if (!user) return null;
+      //   console.log("User found:", user);
+      //   const isValid = await verifyPassword(credentials.password, user.password);
+      //   if (!isValid) return null;
+      //   // Return user object for session
+      //   return {
+      //     id: user._id.toString(),
+      //     email: user.email,
+      //     name: user.name,
+      //     role: user.role,
+      //   };
+      // }
       async authorize(credentials) {
         await connectToDatabase();
-        const user = await User.findOne({ email: credentials.email });
+
+        // disambiguated overload:
+        const user = await (User.collection).findOne({ email: credentials.email });
+        // const user = await User.findOne({ email: credentials.email }).exec();
+
         if (!user) return null;
+
         console.log("User found:", user);
-        const isValid = await verifyPassword(credentials.password, user.password);
+
+        const isValid = await verifyPassword(
+          credentials.password,
+          user.password
+        );
         if (!isValid) return null;
-        // Return user object for session
+
         return {
           id: user._id.toString(),
           email: user.email,
           name: user.name,
-          role: user.role,
+          role: user.role
         };
       }
     })
@@ -52,7 +76,7 @@ import { verifyPassword } from "@/lib/auth";
     }
   },
   pages: {
-    signIn: "/login", // Optional: your custom login page
+    signIn: "/login" // Optional: your custom login page
   }
 };
 
