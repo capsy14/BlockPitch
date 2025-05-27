@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import MyStartup from "@/components/myStartups"
 import Layout from "@/components/Layout"

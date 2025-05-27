@@ -1,4 +1,5 @@
 // import { DashboardHeader } from "@/components/dashboard-header"
+'use client'
 import { InvestmentHistory } from "@/components/investmentHistory"
 import { InvestmentAlerts } from "@/components/investmentAlert"
 import { LegalDocuments } from "@/components/legalDocument"

@@ -1,3 +1,4 @@
+'use client'
 import StartupDetails from "@/components/startupDetailFill"
 import React from 'react'
 import Layout from "@/components/Layout";
