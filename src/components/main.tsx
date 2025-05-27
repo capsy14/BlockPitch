@@ -1,20 +1,21 @@
+'use client'
 
-import Lottie from "lottie-react";
+// import Lottie from "lottie-react";
 import image1 from "@/../public/image1.json";
 import InvestorSignupForm from "@/components/investor-signup-form"
 import TeamMember from "@/components/team-member"
 import MetricsCard from "@/components/metrics-card"
 import Testimonial from "@/components/testimonial"
 import FAQAccordion from "@/components/faq-accordion"
-import MarketChart from "@/components/market-chart"
-
+// import MarketChart from "@/components/market-chart"
+import dynamic from "next/dynamic";
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { ChevronRight, BarChart3, Users, TrendingUp, CheckCircle, ArrowRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import lottie, { AnimationItem } from 'lottie-web';
-import MyLottieComponent from "./MyLottieComponent";
+// import MyLottieComponent from "./MyLottieComponent";
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 import { FlipWords } from "./ui/flip-word";
@@ -22,10 +23,14 @@ function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-
+import {AnimatedTestimonials} from "@/components/ui/animated-testimonials"
 import { cva, type VariantProps } from "class-variance-authority"
 import { RainbowButton } from "./magicui/rainbow-button";
-
+// import dynamic from "next/dynamic";
+const MarketChart = dynamic(() => import("@/components/market-chart"), { ssr: false });
+const MyLottieComponent = dynamic(() => import("./MyLottieComponent"), { ssr: false });
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
+// import AnimatedTestimonialsDemo from "@/components/team";
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
@@ -73,12 +78,54 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     )
   }
 )
+
+
 Button.displayName = "Button"
+
+
 
 
 export default function main() {
 
    const words = ["better", "cute", "beautiful", "modern"];
+   const testimonials = [
+  {
+    quote: "SWE Intern @PayPal | Web3 Wing Senior Member @Axios",
+    name: "Kartik Bhatt",
+    designation: "CEO & Co-Founder",
+    src: "https://media.licdn.com/dms/image/v2/D5603AQGarAxqu1ZgNg/profile-displayphoto-shrink_400_400/B56ZV5bcA.GsAg-/0/1741498997370?e=1753315200&v=beta&t=q7gwinzX1o2QCE9aggXR8qsocRWLc7T5A9qmduiIncE"
+  },
+  {
+    quote: "Campus Ambassador of @PhysicsWallah",
+    name: "Bhanu Singh",
+    designation: "Frontend & Backend",
+    src: "https://media.licdn.com/dms/image/v2/D5603AQHVB_RMRDU7kQ/profile-displayphoto-shrink_400_400/B56ZWV6_QnHoAg-/0/1741977024248?e=1753315200&v=beta&t=EqZ2QydQ6dLYbFE1USmHBEEZBG47wmt8rDXfmif_Prk"
+  },
+  {
+    quote: "Summer Analyst @Goldman Sachs | Expert @Codeforces",
+    name: "Smit Italiya",
+    designation: "Chief Product Officer AI",
+    src: "https://media.licdn.com/dms/image/v2/D4D03AQGvAmJrdkxNZA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1724866728344?e=1753315200&v=beta&t=ex8vfjjFtlKexmfXU_IuKvBKqekL0s1MslO9ou2q6Qs"
+  },
+  {
+    quote: "Wen Wing Lead @GDSC IIIT Lucknow.",
+    name: "Jenil Jain",
+    designation: "Chief Product Officer AI",
+    src: "https://media.licdn.com/dms/image/v2/D5603AQE7S43cHsZ5nA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1676894691115?e=1753315200&v=beta&t=7BtZaeoFMajA5fe1bZKlmGio89pwsSk73KL2YlaulP0"
+  },
+  {
+    quote: "Expert @Codeforces",
+    name: "Rishi Rohilla",
+    designation: "Frontend & Backend",
+    src: "https://media.licdn.com/dms/image/v2/D5603AQFOu20VPwdbAg/profile-displayphoto-shrink_400_400/B56ZUpmKexHsAg-/0/1740159630418?e=1753315200&v=beta&t=G-c5itmWdTF9_3lpE11Bgt1e5kNJPUTV3EVjatKpiaQ"
+  }
+];
+const AnimatedTestimonialsClient = dynamic(
+  () => import("@/components/team"),
+  { ssr: false }
+);
+
+
   return (
     <div className="w-full px-[2rem] flex max-w-[100%] min-h-screen flex-col items-center justify-center bg-background text-foreground">
 
@@ -329,66 +376,10 @@ export default function main() {
               </p>
             </div>
 
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              <TeamMember
-                name="Sarah Johnson"
-                role="CEO & Co-Founder"
-                image="/placeholder.svg?height=300&width=300&text=SJ"
-                bio="Former VP at PayPal. Led growth from $10M to $100M ARR. Stanford MBA."
-                linkedin="#"
-              />
-              <TeamMember
-                name="Michael Chen"
-                role="CTO & Co-Founder"
-                image="/placeholder.svg?height=300&width=300&text=MC"
-                bio="Ex-Google AI Lead. 15+ years in fintech. MIT Computer Science PhD."
-                linkedin="#"
-              />
-              <TeamMember
-                name="David Rodriguez"
-                role="Chief Product Officer"
-                image="/placeholder.svg?height=300&width=300&text=DR"
-                bio="Previously CPO at Square. Scaled product to 10M+ users. Y Combinator alum."
-                linkedin="#"
-              />
-              <TeamMember
-                name="Aisha Patel"
-                role="Chief Revenue Officer"
-                image="/placeholder.svg?height=300&width=300&text=AP"
-                bio="Former Sales Director at Stripe. Generated $50M+ in enterprise deals."
-                linkedin="#"
-              />
-              <TeamMember
-                name="James Wilson"
-                role="VP of Engineering"
-                image="/placeholder.svg?height=300&width=300&text=JW"
-                bio="Led engineering at Plaid. Built scalable financial infrastructure serving millions."
-                linkedin="#"
-              />
-              <TeamMember
-                name="Elena Gomez"
-                role="VP of Marketing"
-                image="/placeholder.svg?height=300&width=300&text=EG"
-                bio="Ex-Airbnb Growth Lead. Drove 300% user acquisition improvement in 18 months."
-                linkedin="#"
-              />
-            </div>
 
-            <div className="mt-12 text-center">
-              <h3 className="mb-6 text-xl font-bold">Backed By</h3>
-              <div className="flex flex-wrap items-center justify-center gap-8">
-                {[1, 2, 3, 4, 5].map((i) => (
-                  <div key={i} className="h-12 w-32 rounded-md bg-muted">
-                    <Image
-                      src={`/placeholder.svg?height=48&width=128&text=Investor+${i}`}
-                      alt={`Investor ${i}`}
-                      width={128}
-                      height={48}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
+        <AnimatedTestimonialsClient testimonials={testimonials} />
+          
+            
           </div>
         </section>
 
@@ -508,26 +499,26 @@ export default function main() {
                 quote="The team's execution speed is remarkable. They've consistently hit every milestone ahead of schedule."
                 name="Alex Thompson"
                 role="Partner, Sequoia Capital"
-                image="/placeholder.svg?height=80&width=80&text=AT"
+                image="https://media.licdn.com/dms/image/v2/D4E03AQH6TrPRLm_hgw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1697558218802?e=1753315200&v=beta&t=hvNqTKpCF4BWM5RjB0gcvviVW76vsGaKaNVMeLtxuhE"
               />
               <Testimonial
                 quote="Their product-market fit is the strongest I've seen in the fintech space in the last decade."
                 name="Jennifer Wu"
                 role="Angel Investor, Former CFO at Visa"
-                image="/placeholder.svg?height=80&width=80&text=JW"
+                image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjj62a5RbaVGp1eNl33svrcsvFy58Z4cjdrw&s"
               />
               <Testimonial
                 quote="The founding team combines deep technical expertise with exceptional business acumen. A rare combination."
                 name="Robert Kiyosaki"
                 role="Managing Director, Fintech Ventures"
-                image="/placeholder.svg?height=80&width=80&text=RK"
+                image="https://upload.wikimedia.org/wikipedia/commons/c/c1/Robert_Kiyosaki_by_Gage_Skidmore_2.jpg"
               />
             </div>
           </div>
         </section>
 
         {/* FAQ Section */}
-        <section className="py-20 bg-white dark:bg-background">
+        <section id="faq" className="py-20 bg-white dark:bg-background">
           <div className="container">
             <div className="mx-auto mb-12 max-w-[800px] text-center">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">

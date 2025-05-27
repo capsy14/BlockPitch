@@ -56,7 +56,8 @@ export default function StartupForm() {
     // cofounderEmail: "",
     cofounderEmail:"",
     cofounderLinkedin: "",
-   pitchDeck: ""
+   pitchDeck: "",
+   walletAddress: "",
   });
 
   useEffect(() => {
@@ -113,7 +114,8 @@ export default function StartupForm() {
       cofounderName: form.cofounderName,
       cofounderEmail: form.cofounderEmail,
       cofounderLinkedin: form.cofounderLinkedin,
-      pitchDeck: form.pitchDeck
+      pitchDeck: form.pitchDeck,
+        walletAddress: form.walletAddress,
     };
 
     try {
@@ -125,7 +127,7 @@ export default function StartupForm() {
 
       const result = await res.json();
       if (res.ok) {
-        alert("Successfully submitted to MongoDB ✅");
+        alert("Successfully submitted ✅");
         console.log("Mongo result:", result);
         window.location.href = "/startup/dashboard";
       } else {
@@ -378,7 +380,20 @@ export default function StartupForm() {
 
             {/* Step 4: Pitch Deck Upload */}
             {step === 4 && (
+              
              <div className="space-y-2">
+              <div className="space-y-2">
+  <Label htmlFor="wallet-address">MetaMask Wallet Address</Label>
+  <Input
+    id="wallet-address"
+    placeholder="0x..."
+    value={form.walletAddress}
+    onChange={(e) =>
+      setForm({ ...form, walletAddress: e.target.value })
+    }
+  />
+</div>
+<div className="space-y-2">
   <Label htmlFor="pitch-link">Pitch Deck Link</Label>
   <Input
     id="pitch-link"
@@ -390,6 +405,7 @@ export default function StartupForm() {
     Paste a shareable link to your pitch deck (Google Drive, Dropbox, etc.)
   </p>
 </div>
+            </div>
 
             )}
 

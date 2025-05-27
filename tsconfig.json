@@ -38,6 +38,6 @@
     "src/components/startupDashboard.jsx",
     "src/components/ui/button.jsx",
     "src/lib/socket.ts"
-, "src/components/SendEth.jsx"  ],
+, "src/components/SendEth.jsx", "src/models/User.ts"  ],
   "exclude": ["node_modules"]
 }

@@ -1,3 +1,4 @@
+'use client';
 import React, { useState, useEffect, useRef } from "react";
 import { ethers } from "ethers";
 
@@ -28,12 +29,19 @@ const MetaMaskLogin = () => {
         setDropdownOpen(false);
       }
     };
-
-    if (dropdownOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
+    if(!dropdownOpen) return;
+    
+    if (typeof document !== "undefined") {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
       document.removeEventListener("mousedown", handleClickOutside);
-    }
+    };
+  }
+    // if (dropdownOpen) {
+    //   document.addEventListener("mousedown", handleClickOutside);
+    // } else {
+    //   document.removeEventListener("mousedown", handleClickOutside);
+    // }
     
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);

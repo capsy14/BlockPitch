@@ -1,12 +1,10 @@
 import type React from "react";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+// import { Geist, Azeret_Mono as Geist_Mono } from "next/font/google";
 // import "./globals.css"
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { DashboardSidebar } from "@/components/startup-dashboard-sidebar";
-// import { ThemeProvider } from "@/components/theme-provider"
 
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Investor Dashboard",
@@ -19,16 +17,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
- 
+    <html lang="en" suppressHydrationWarning>
+      <body
+     
+      >
         <SidebarProvider>
           <div className="flex h-screen w-full">
             <DashboardSidebar />
             <div className="flex-1 overflow-auto">{children}</div>
           </div>
         </SidebarProvider>
-       
       </body>
     </html>
   );

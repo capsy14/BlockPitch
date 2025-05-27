@@ -1,4 +1,5 @@
 // import { DashboardHeader } from "@/components/dashboard-header"
+'use client'
 import { InvestmentHistory } from "@/components/investmentHistory"
 import { InvestmentAlerts } from "@/components/investmentAlert"
 import { LegalDocuments } from "@/components/legalDocument"
@@ -8,7 +9,6 @@ export default function InvestmentsPage() {
   return (
     <Layout>
     <div className="flex flex-col min-h-screen">
-      {/* <DashboardHeader title="Investment Management" /> */}
       <main className="flex-1 p-6 space-y-6">
         
             <InvestmentHistory />

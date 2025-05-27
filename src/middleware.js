@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server"
 import { jwtVerify } from "jose" // <- Import from jose
 
-export const runtime = 'edge'; // Ensure you're using the edge runtime
+export const runtime = 'experimental-edge';
+ // Ensure you're using the edge runtime
 
 const protectedRoutes = [
   { path: "/dashboard", roles: ["investor", "startup"] },

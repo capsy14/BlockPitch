@@ -43,11 +43,18 @@ export function DashboardSidebar() {
       active: pathname === `${basePath}/investments`,
     },
     {
-      title: "Insights",
-      icon: LineChart,
-      href: `${basePath}/insights`,
-      active: pathname === `${basePath}/insights`,
-    },
+      title: "Credits",
+      icon: CreditCard,
+      href: `${basePath}/credits`,
+      active: pathname === `${basePath}/credits`,
+    }
+    // ,
+    // {
+    //   title: "Insights",
+    //   icon: LineChart,
+    //   href: `${basePath}/insights`,
+    //   active: pathname === `${basePath}/insights`,
+    // },
   ]
 
   return (
@@ -55,8 +62,10 @@ export function DashboardSidebar() {
       <SidebarHeader className="border-b px-6 py-3">
         <div className="flex items-center gap-2">
           <BarChart3 className="h-6 w-6" />
+          <Link href="/" className="text-2xl font-bold text-primary">
+
           <span className="font-semibold text-lg">BlockPitch</span>
-        </div>
+                 </Link> </div>
       </SidebarHeader>
       <SidebarContent>
         <SidebarMenu>
