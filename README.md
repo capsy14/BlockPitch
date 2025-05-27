@@ -41,14 +41,35 @@ cd BlockPitch
 
 ### 2️⃣ Install Dependencies
 
-``` 
+Frontend:
+```bash
 npm install
 ```
-### 3️⃣ Run the Development Server
+
+ML Backend:
+```bash
+cd backend
+python -m venv venv_new
+.\venv_new\Scripts\Activate.ps1
+pip install -r requirements.txt
 ```
+
+### 3️⃣ Run the Development Servers
+
+Frontend:
+```bash
 npm run dev
-Visit: http://localhost:3000 🚀
 ```
+Visit: http://localhost:3000
+
+ML Backend:
+```bash
+cd backend
+.\venv_new\Scripts\Activate.ps1
+$env:FLASK_APP="app.py"
+python -m flask run
+```
+Visit: http://localhost:5000
 
 ### 💡 How It Works
 Startups register and submit their project details.
