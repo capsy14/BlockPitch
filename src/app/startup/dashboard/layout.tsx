@@ -1,4 +1,3 @@
-'use client';
 import type React from "react";
 import type { Metadata } from "next";
 // import { Geist, Azeret_Mono as Geist_Mono } from "next/font/google";
