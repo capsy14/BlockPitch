@@ -1,4 +1,4 @@
-'use client';
+
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
@@ -7,7 +7,6 @@ import Layout from "@/components/Layout";
 import  StartupData  from "@/models/StartupData" // ✅ Correct
 import { StartupActions, ConnectWithFounder } from "@/components/StartupActions"
 import { MdOutlineMail } from "react-icons/md";
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { MessageSquare, DollarSign, Video  } from "lucide-react"
