@@ -1,9 +1,13 @@
- import React from 'react'
- 
- const Page = () => {
-   return (
-     <div>page</div>
-   )
- }
- 
- export default Page;
+import React from 'react'
+import StartupMessages from "@/components/startupMessages"
+import Layout from "@/components/Layout"
+const page = () => {
+  return (
+    <div>
+      <Layout>
+      <StartupMessages/></Layout>
+    </div>
+  )
+}
+
+export default page

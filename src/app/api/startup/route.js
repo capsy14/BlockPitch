@@ -1,11 +1,14 @@
 import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/db";
 import StartupData from "@/models/StartupData";
+import { verifyToken } from "@/lib/auth";
 
- 
 
 export async function POST(request) {
   try {
+        const token = request.cookies.get("auth_token")?.value;
+    const decoded = verifyToken(token);
+    const founderUserId = decoded.id; 
     const body = await request.json();
     const {
       startupName,
@@ -20,8 +23,8 @@ export async function POST(request) {
       cofounderName,
       cofounderEmail,
       cofounderLinkedin,
-       pitchDeck,
-         walletAddress,
+      pitchDeck,
+      walletAddress,
     } = body;
 
     // Validate required fields
@@ -59,6 +62,7 @@ export async function POST(request) {
       cofounderLinkedin,
       pitchDeck,
         walletAddress,
+         founderUserId,
     });
 
     await newStartup.save();

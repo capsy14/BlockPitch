@@ -7,7 +7,7 @@ import { DashboardSidebar } from "@/components/startup-dashboard-sidebar";
 
 
 export const metadata: Metadata = {
-  title: "Investor Dashboard",
+  title: "Dashboard",
   description: "Track your startup investments and portfolio performance"
 };
 

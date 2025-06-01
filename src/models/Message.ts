@@ -1,9 +1,9 @@
-import mongoose, { Schema, Model, HydratedDocument } from 'mongoose';
+import mongoose, { Schema, Model, HydratedDocument, Types } from 'mongoose';
 
 // 1. TypeScript interface for a Message
 export interface IMessage {
-  sender: mongoose.Types.ObjectId;   // Reference to User._id
-  recipient: mongoose.Types.ObjectId;// Reference to User._id
+  sender: Types.ObjectId;
+  recipient: Types.ObjectId;
   content: string;
   timestamp: Date;
 }

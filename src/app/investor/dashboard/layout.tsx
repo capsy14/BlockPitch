@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 // import { Geist, Azeret_Mono as Geist_Mono } from "next/font/google";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { DashboardSidebar } from "@/components/investorDashboardSidebar";
-
+import Link from "next/link";
 export const metadata: Metadata = {
-  title: "Investor Dashboard",
+  title: "Dashboard",
   description: "Track your startup investments and portfolio performance"
 };
 

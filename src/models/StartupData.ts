@@ -1,4 +1,4 @@
-import mongoose, { Model, Document, Schema } from "mongoose";
+import mongoose, { Model, Document, Schema, Types } from "mongoose";
 
 export interface IMessage {
   sender: string; // Email of the sender
@@ -16,7 +16,8 @@ export interface IStartup extends Document {
   solution?: string;
   founderName?: string;
   founderEmail?: string;
-  founderLinkedIn?: string;
+  founderUserId: Types.ObjectId;
+      founderLinkedIn?: string;
   cofounderName?: string;
   cofounderEmail?: string;
   cofounderLinkedin?: string;
@@ -50,6 +51,8 @@ const StartupSchema = new Schema<IStartup>({
   solution: String,
   founderName: String,
   founderEmail: { type: String, required: true },
+  // src/models/StartupData.ts
+founderUserId: { type: Schema.Types.ObjectId, ref: "User", required: true },
   founderLinkedIn: String,
   cofounderName: String,
   cofounderEmail: String,

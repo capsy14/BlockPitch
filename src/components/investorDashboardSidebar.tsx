@@ -8,7 +8,7 @@ import {
   LayoutDashboard,
   LineChart,
   LogOut,
-  GalleryVerticalEnd 
+  GalleryVerticalEnd ,HandCoins 
 } from "lucide-react";
 import {
   Sidebar,
@@ -41,17 +41,17 @@ export function DashboardSidebar() {
       href: `${basePath}/startups`,
       active: pathname === basePath
     },
-    // {
-    //   title: "Messages",
-    //   icon: Building2,
-    //   href: `${basePath}/messages`,
-    //   active:
-    //     pathname === `${basePath}/messages` ||
-    //     pathname.startsWith(`${basePath}/startups/`)
-    // },
+    {
+      title: "Messages",
+      icon: Building2,
+      href: `${basePath}/messages`,
+      active:
+        pathname === `${basePath}/messages` ||
+        pathname.startsWith(`${basePath}/startups/`)
+    },
     {
       title: "Investments",
-      icon: CreditCard,
+      icon: HandCoins ,
       href: `${basePath}/investments`,
       active: pathname === `${basePath}/investments`
     }

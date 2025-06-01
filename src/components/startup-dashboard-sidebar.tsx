@@ -1,7 +1,7 @@
 "use client"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { BarChart3, Building2, CreditCard, LayoutDashboard, LineChart, LogOut } from "lucide-react"
+import {House , CopyPlus ,BarChart3, Building2, CreditCard, LayoutDashboard, LineChart, LogOut, Inbox  } from "lucide-react"
 import {
   Sidebar,
   SidebarContent,
@@ -32,13 +32,13 @@ export function DashboardSidebar() {
 
     {
       title: "My Startups",
-      icon: CreditCard,
+      icon: House ,
       href: `${basePath}/myStartups`,
       active: pathname === `${basePath}/myStartups`,
     },
     {
       title: "Add Startup",
-      icon: CreditCard,
+      icon: CopyPlus ,
       href: `${basePath}/startup-details`,
       active: pathname === `${basePath}/investments`,
     },
@@ -48,13 +48,13 @@ export function DashboardSidebar() {
       href: `${basePath}/credits`,
       active: pathname === `${basePath}/credits`,
     }
-    // ,
-    // {
-    //   title: "Insights",
-    //   icon: LineChart,
-    //   href: `${basePath}/insights`,
-    //   active: pathname === `${basePath}/insights`,
-    // },
+    ,
+    {
+      title: "Inbox",
+      icon: Inbox,
+      href: `${basePath}/messages`,
+      active: pathname === `${basePath}/messages`,
+    },
   ]
 
   return (

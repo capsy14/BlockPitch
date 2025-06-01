@@ -137,7 +137,7 @@ export default function InvestorDashboard() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-        <Card className="relative overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900 border-slate-200 dark:border-slate-800">
+        <Card className="relative overflow-hidden  border-slate-200 dark:border-slate-800">
           <CardContent className="p-6">
             <div className="flex items-center gap-2 mb-6">
               <div className="p-2 bg-gray-500/10 rounded-lg">
@@ -191,7 +191,7 @@ export default function InvestorDashboard() {
           </CardContent>
         </Card>
 
-        <Card className="relative overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900 border-slate-200 dark:border-slate-800">
+        <Card className="relative overflow-hidden  dark:from-slate-950 dark:to-slate-900 border-slate-200 dark:border-slate-800">
           <CardContent className="p-6">
             <div className="flex items-center gap-2 mb-6">
               <div className="p-2 bg-emerald-500/10 rounded-lg">
