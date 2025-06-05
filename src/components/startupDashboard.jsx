@@ -6,6 +6,7 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { useAuth } from "@/context/AuthContext"
+import PitchUploader from "@/components/uploadModal";
 import { useRouter } from "next/navigation"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -263,10 +264,12 @@ export default function StartupDashboard() {
       <Card className="p-6 mb-8">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-medium">Your Pitch Materials</h3>
-          <Button>
-            <PlusCircle className="h-4 w-4 mr-2" />
-            Add New
-          </Button>
+          <PitchUploader onUploadSuccess={() => {
+            // Refresh startups after upload
+            axios.get("/api/startupdata").then((res) => {
+              setStartups(res.data.startups || []);
+            });
+          }} />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

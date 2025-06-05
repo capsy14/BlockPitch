@@ -36,6 +36,7 @@
     "clsx": "^2.1.1",
     "dotenv": "^16.5.0",
     "ethers": "^6.13.5",
+    "formidable": "^3.5.4",
     "html2canvas": "^1.4.1",
     "jose": "^6.0.10",
     "jsonwebtoken": "^9.0.2",

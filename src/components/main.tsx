@@ -93,7 +93,7 @@ export default function main() {
     quote: "SWE Intern @PayPal | Web3 Wing Senior Member @Axios",
     name: "Kartik Bhatt",
     designation: "CEO & Co-Founder",
-    src: "https://media.licdn.com/dms/image/v2/D5603AQGarAxqu1ZgNg/profile-displayphoto-shrink_400_400/B56ZV5bcA.GsAg-/0/1741498997370?e=1753315200&v=beta&t=q7gwinzX1o2QCE9aggXR8qsocRWLc7T5A9qmduiIncE"
+    src: "https://i.postimg.cc/N0hRR5JT/Kartik-Bhatt.jpg"
   },
   {
     quote: "Campus Ambassador of @PhysicsWallah",
